@@ -44,7 +44,7 @@
                     <th>Tipe</th>
                     <th>Tgl Awal</th>
                     <th>Tgl Akhir</th>
-                    <th></th>
+                    <th>Aksi</th>
                 </tr>
 
             </tfoot>
@@ -80,6 +80,14 @@
             column.search(this.value).draw();
         } );
     } ); 
-
+function addRekomendasi(){
+    ajaxView("get", "rekomendasiadd", "p=add", "#content");
+}
+function edit(e){
+    modalOpener("#myModal", "Update Rekomendasi", ajaxView("get", "rekomendasiadd", "p=update", ".modal-body"));
+}
+function hapus(e){
+    modalOpener("#myModal", "Delete Rekomendasi", "modalContent");
+}
 </script>
 <!--/subform:rekomendasi-->
