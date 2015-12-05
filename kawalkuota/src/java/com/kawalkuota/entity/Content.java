@@ -8,6 +8,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
@@ -30,13 +32,22 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Content.findByTitle", query = "SELECT c FROM Content c WHERE c.title = :title"),
     @NamedQuery(name = "Content.findByHeadline", query = "SELECT c FROM Content c WHERE c.headline = :headline")})
 public class Content implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 30)
+    @Size(min = 1, max = 255)
+    @Column(name = "link")
+    private String link;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "kategori")
+    private String kategori;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "id_content")
-    private String idContent;
+    private Integer idContent;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -57,22 +68,22 @@ public class Content implements Serializable {
     public Content() {
     }
 
-    public Content(String idContent) {
+    public Content(int idContent) {
         this.idContent = idContent;
     }
 
-    public Content(String idContent, String title, String headline, String content) {
+    public Content(int idContent, String title, String headline, String content) {
         this.idContent = idContent;
         this.title = title;
         this.headline = headline;
         this.content = content;
     }
 
-    public String getIdContent() {
+    public int getIdContent() {
         return idContent;
     }
 
-    public void setIdContent(String idContent) {
+    public void setIdContent(int idContent) {
         this.idContent = idContent;
     }
 
@@ -123,6 +134,22 @@ public class Content implements Serializable {
     @Override
     public String toString() {
         return "com.kawalkuota.entity.Content[ idContent=" + idContent + " ]";
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
     }
     
 }
