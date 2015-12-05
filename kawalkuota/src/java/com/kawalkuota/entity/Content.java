@@ -30,6 +30,16 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Content.findByTitle", query = "SELECT c FROM Content c WHERE c.title = :title"),
     @NamedQuery(name = "Content.findByHeadline", query = "SELECT c FROM Content c WHERE c.headline = :headline")})
 public class Content implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "link")
+    private String link;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "kategori")
+    private String kategori;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -123,6 +133,22 @@ public class Content implements Serializable {
     @Override
     public String toString() {
         return "com.kawalkuota.entity.Content[ idContent=" + idContent + " ]";
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
     }
     
 }

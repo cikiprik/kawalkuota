@@ -34,6 +34,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "User.findByLevel", query = "SELECT u FROM User u WHERE u.level = :level"),
     @NamedQuery(name = "User.findByAktif", query = "SELECT u FROM User u WHERE u.aktif = :aktif")})
 public class User implements Serializable {
+    @Column(name = "level")
+    private Integer level;
+    @Column(name = "aktif")
+    private Integer aktif;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
@@ -62,14 +66,6 @@ public class User implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "password")
     private String password;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "level")
-    private int level;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "aktif")
-    private int aktif;
 
     public User() {
     }
@@ -108,22 +104,6 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public int getAktif() {
-        return aktif;
-    }
-
-    public void setAktif(int aktif) {
-        this.aktif = aktif;
     }
 
     @Override
@@ -165,6 +145,22 @@ public class User implements Serializable {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    public Integer getAktif() {
+        return aktif;
+    }
+
+    public void setAktif(Integer aktif) {
+        this.aktif = aktif;
     }
     
 }
