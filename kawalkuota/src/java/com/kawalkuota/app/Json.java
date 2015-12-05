@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kawalkuota.dao.AppService;
 import com.kawalkuota.entity.Rekomendasi;
+import com.kawalkuota.entity.Rekomendasidetil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Type;
@@ -72,24 +73,24 @@ public class Json extends HttpServlet {
                     out.println("{\"data\":"+json+"}");
                    
                 }
-                if ("rekomendasiDetil".equals(p)) {
+                if ("rekomendasidetil".equals(p)) {
                     
-                    List<Rekomendasi> td = appService.GetAllData("Rekomendasi");
-                    for (Iterator<Rekomendasi> it = td.iterator(); it.hasNext();) {
-                        Rekomendasi rek= it.next();
-                        rek.setKdIjin(
+                    List<Rekomendasidetil> td = appService.GetAllData("Rekomendasidetil");
+                    
+                    for (Iterator<Rekomendasidetil> it = td.iterator(); it.hasNext();) {
+                        Rekomendasidetil rek= it.next();
+                        rek.setFlag(
                                 "<button class='btn btn-warning btn-xs btn-fill' "
                                 + "onclick='edit("+rek.getId()+")'>"
                                 + "<i class='fa fa-pencil-square-o'></i></button> "
                                 + "<button class='btn btn-danger btn-xs btn-fill' onclick='delete("+rek.getId()+")'><i class='fa fa-trash-o'></i></button>");
                         }
-                                        
                     Gson gson = new Gson();
                     Type type = new TypeToken<List<Rekomendasi>>() {
                     }.getType();
                     String json = gson.toJson(td, type);
                     out.println("{\"data\":"+json+"}");
-                   
+                    
                 }
                 
            

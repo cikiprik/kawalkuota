@@ -26,4 +26,25 @@ function ajaxView(method, uri, variable, resulte){
     });
                
 }
+function modalLoad(idName, idModalName, modalTitle, modalContent){
+    $(idName).click(function(){
+        $(idModalName).modal('show');
+        $('.modal-title').text(modalTitle);
+        $('.modal-body').html(modalContent);
+    });
+}
+
+function modalOpener(idModalName, modalTitle, modalContent){
+    $(idModalName).modal('show');
+    $('.modal-title').text(modalTitle);
+    $('.modal-body').html(modalContent);
+}
+
+function maskDate(a){
+    var checkout = $(a).datepicker({
+        format: 'dd-mm-yyyy'
+    }).on('changeDate', function() {
+        checkout.hide();
+    }).data('datepicker');
+}
 
