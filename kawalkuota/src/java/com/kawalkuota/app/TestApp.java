@@ -4,12 +4,14 @@
  */
 package com.kawalkuota.app;
 
+import com.kawalkuota.dao.AppService;
 import com.kawalkuota.dao.SuperCtr;
 import com.kawalkuota.entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,19 +24,33 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "TestApp", urlPatterns = {"/TestApp"})
 public class TestApp extends HttpServlet {
-
+    @EJB
+    private AppService appService;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-
-            SuperCtr dao = new SuperCtr();
-            List<User> list = dao.getData("User");
-            for (Iterator<User> it = list.iterator(); it.hasNext();) {
-                User user = it.next();
-                out.println("" + user.getUsername());
-            }
+            
+            User user = appService.GetUser(2);
+//            user.setEmail("a");
+//            user.setLevel(1);
+//            user.setUsername("dea");
+//            user.setPassword("aja");
+//            user.setAktif(1);
+//            user.setPhoto("lalaladate(.jpg");
+//            user = (User) appService.Simpan(user);
+            out.println("user:"+user);
+//            user.setIdUser(8);
+            String x = appService.Hapus(user);
+            
+            out.println(""+x);
+//            SuperCtr dao = new SuperCtr();
+//            List<User> list = dao.getData("User");
+//            for (Iterator<User> it = list.iterator(); it.hasNext();) {
+//                User users = it.next();
+//                out.println("" + users.getUsername());
+//            }
 
         } finally {
             out.close();
