@@ -58,7 +58,7 @@ public class AppService {
        public String Hapus(Object o) {
            String x = null ;
         try {
-            emApp.remove(o);
+            emApp.remove(emApp.merge(o));
             emApp.flush();
             x = "sukses";
             
