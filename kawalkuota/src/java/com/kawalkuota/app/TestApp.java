@@ -31,26 +31,17 @@ public class TestApp extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+
+            User user1 = (User) appService.GetBySingle("User","Username","ada");
+            out.print(user1.getUsername());
             
-            User user = appService.GetUser(2);
-//            user.setEmail("a");
-//            user.setLevel(1);
-//            user.setUsername("dea");
-//            user.setPassword("aja");
-//            user.setAktif(1);
-//            user.setPhoto("lalaladate(.jpg");
-//            user = (User) appService.Simpan(user);
-            out.println("user:"+user);
-//            user.setIdUser(8);
-            String x = appService.Hapus(user);
+            List<User> user = appService.GetBy("User","Username","ada",0,10);
+            for (Iterator<User> it = user.iterator(); it.hasNext();) {
+                User us = it.next();
+                
+                out.println("ini dia "+us.getUsername());
+            }
             
-            out.println(""+x);
-//            SuperCtr dao = new SuperCtr();
-//            List<User> list = dao.getData("User");
-//            for (Iterator<User> it = list.iterator(); it.hasNext();) {
-//                User users = it.next();
-//                out.println("" + users.getUsername());
-//            }
 
         } finally {
             out.close();
