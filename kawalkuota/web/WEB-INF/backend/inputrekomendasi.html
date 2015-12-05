@@ -95,6 +95,16 @@
 
 
 <script>
+    jQuery('#tglAwal').datepicker({
+        format: 'dd-mm-yyyy'
+    }).on('changeDate', function() {
+        checkout.hide();
+    });
+    jQuery('#tglAkhir').datepicker({
+        format: 'dd-mm-yyyy'
+    }).on('changeDate', function() {
+        checkout.hide();
+    });
     jQuery('#tableRekomendasiDetil tfoot th').each( function () {
         var title = jQuery(this).text();
         jQuery(this).html('<input type="text" placeholder="Cari '+title+'"  class="input-sm form-control"/> ');
@@ -130,7 +140,15 @@
         var tglawal = jQuery("#tglawal").val();
         var tglakhir = jQuery("#tglakhir").val();
         var kdijin = jQuery("#kdIjin").val();
-    
+        
+        ajaxView("post", "rekomendasiadd", "p=save&"+
+            "&a="+noSurat+
+            "&b="+npwp+
+            "&c="+tipe+
+            "&d="+tglawal+
+            "&e="+tglakhir+
+            "&f="+kdijin, "#content")
+    });
 </script>
 <!--/subform:rekomendasiAdd-->
 
