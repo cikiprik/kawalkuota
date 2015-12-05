@@ -34,6 +34,8 @@ import net.ahsanfile.html.helper.HTMLString;
 public class Json extends HttpServlet {
     @EJB
     private AppService appService;
+   
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");

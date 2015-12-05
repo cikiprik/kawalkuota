@@ -44,6 +44,7 @@
                     <th>Tipe</th>
                     <th>Tgl Awal</th>
                     <th>Tgl Akhir</th>
+                    <th></th>
                 </tr>
 
             </tfoot>
@@ -73,21 +74,12 @@
         ]    
        } 
     );
-   table.rows( { selected: true } ).data();
    table.columns().every( function () {
         var column = this;
         jQuery('input', this.footer()).on('keyup click change', function () {
             column.search(this.value).draw();
         } );
     } ); 
-function addRekomendasi(){
-    ajaxView("get", "rekomendasiadd", "p=add", "#content");
-}
-function edit(e){
-    modalOpener("#myModal", "Update Rekomendasi", ajaxView("get", "rekomendasiadd", "p=update", ".modal-body"));
-}
-function hapus(e){
-    modalOpener("#myModal", "Delete Rekomendasi", "modalContent");
-}
+
 </script>
 <!--/subform:rekomendasi-->
