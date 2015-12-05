@@ -1,0 +1,1042 @@
+/**/
+/* defaults */
+/**/
+.cius-form {
+	margin: 0;
+	outline: none;
+	/*box-shadow: 0 0 20px rgba(0,0,0,.3);*/
+	/*font: 13px/1.55 'Open Sans', Helvetica, Arial, sans-serif;*/
+	color: #666;
+}
+.cius-form header {
+	display: block;
+	padding: 20px 30px;	
+	border-bottom: 1px solid rgba(0,0,0,.1);
+	background: rgba(248,248,248,.9);
+	font-size: 25px;
+	font-weight: 300;
+	color: #232323;
+}
+.cius-form fieldset {
+	display: block;	
+	padding: 25px 30px 5px;
+	border: none;
+	background: rgba(255,255,255,.9);
+}
+.cius-form fieldset + fieldset {
+	border-top: 1px solid rgba(0,0,0,.1);
+}
+.cius-form section {
+	margin-bottom: 5px;
+}
+.cius-form footer {
+	display: block;
+	padding: 15px 30px 25px;
+	border-top: 1px solid rgba(0,0,0,.1);
+	background: rgba(248,248,248,.9);
+}
+.cius-form footer:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+.cius-form a {
+	color: #2da5da;
+}
+.cius-form .label {
+	display: block;
+	margin-bottom: 6px;
+	line-height: 19px;
+	font-weight: 400;
+}
+.cius-form .label.col {
+	margin: 0;
+	padding-top: 10px;
+}
+.cius-form .note {
+	margin-top: 6px;
+	padding: 0 1px;
+	font-size: 11px;
+	line-height: 15px;
+	color: #999;
+}
+.cius-form .input,
+.cius-form .select,
+.cius-form .textarea,
+.cius-form .radio,
+.cius-form .checkbox,
+.cius-form .toggle,
+.cius-form .button {
+	position: relative;
+	display: block;
+}
+.cius-form .input input,
+.cius-form .select select,
+.cius-form .textarea textarea {
+	display: block;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	height: 39px;
+	padding: 8px 10px;
+	outline: none;
+	border-width: 2px;
+	border-style: solid;
+	border-radius: 0;
+	background: #fff;
+	font: 15px/19px 'Open Sans', Helvetica, Arial, sans-serif;
+	color: #404040;
+	appearance: normal;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+}
+.cius-form .progress {
+	float: right;
+	margin-top: 10px;
+	line-height: 39px;
+	color: #232323;
+}
+
+
+/**/
+/* captcha inputs */
+/**/
+.cius-form .input-captcha img {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	border-left: 1px solid #e5e5e5;
+}
+
+
+/**/
+/* file inputs */
+/**/
+.cius-form .input-file .button {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	float: none;
+	height: 31px;
+	margin: 0;
+	padding: 0 20px;
+	font-size: 13px;
+	line-height: 31px;
+}
+.cius-form .input-file .button:hover {
+	box-shadow: none;
+}
+.cius-form .input-file .button input {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0;
+	font-size: 30px;
+	cursor: pointer;
+	opacity: 0;
+}
+
+
+/**/
+/* selects */
+/**/
+.cius-form .select i {
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	width: 8px;
+	height: 11px;
+	background: #fff;
+	box-shadow: 0 0 0 12px #fff;
+	pointer-events: none;
+}
+.cius-form .select i:after,
+.cius-form .select i:before {
+	content: '';
+	position: absolute;
+	right: 0;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
+}
+.cius-form .select i:after {
+	bottom: 0;
+	border-top: 4px solid #404040;
+}
+.cius-form .select i:before {
+	top: 0;
+	border-bottom: 4px solid #404040;
+}
+.cius-form .select-multiple select {
+	height: auto;
+}
+
+
+/**/
+/* textareas */
+/**/
+.cius-form .textarea textarea {
+	height: auto;
+	resize: none;
+}
+.cius-form .textarea-resizable textarea {
+	resize: vertical;	
+}
+.cius-form .textarea-expandable textarea {
+	height: 39px;
+}
+.cius-form .textarea-expandable textarea:focus {
+	height: auto;
+}
+
+
+/**/
+/* radios and checkboxes */
+/**/
+.cius-form .radio,
+.cius-form .checkbox {
+	margin-bottom: 4px;
+	padding-left: 27px;
+	font-size: 15px;
+	line-height: 27px;
+	color: #404040;
+	cursor: pointer;
+}
+.cius-form .radio:last-child,
+.cius-form .checkbox:last-child {
+	margin-bottom: 0;
+}
+.cius-form .radio input,
+.cius-form .checkbox input {
+	position: absolute;
+	left: -9999px;
+}
+.cius-form .radio i,
+.cius-form .checkbox i {
+	position: absolute;
+	top: 5px;
+	left: 0;
+	display: block;
+	width: 13px;
+	height: 13px;
+	outline: none;
+	border-width: 2px;
+	border-style: solid;
+	background: #fff;
+}
+.cius-form .radio i {
+	border-radius: 50%;
+}
+.cius-form .radio input + i:after,
+.cius-form .checkbox input + i:after {
+	position: absolute;
+	opacity: 0;
+	-ms-transition: opacity 0.1s;
+	-moz-transition: opacity 0.1s;
+	-webkit-transition: opacity 0.1s;
+}
+.cius-form .radio input + i:after {
+	content: '';
+	top: 4px;
+	left: 4px;
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+}
+.cius-form .checkbox input + i:after {
+	content: '\f00c';
+	top: -1px;
+	left: -1px;
+	width: 15px;
+	height: 15px;
+	font: normal 12px/16px FontAwesome;
+	text-align: center;
+}
+.cius-form .radio input:checked + i:after,
+.cius-form .checkbox input:checked + i:after {
+	opacity: 1;
+}
+.cius-form .inline-group {
+	margin: 0 -30px -4px 0;
+}
+.cius-form .inline-group:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+.cius-form .inline-group .radio,
+.cius-form .inline-group .checkbox {
+	float: left;
+	margin-right: 30px;
+}
+.cius-form .inline-group .radio:last-child,
+.cius-form .inline-group .checkbox:last-child {
+	margin-bottom: 4px;
+}
+
+
+/**/
+/* toggles */
+/**/
+.cius-form .toggle {
+	margin-bottom: 4px;
+	padding-right: 61px;
+	font-size: 15px;
+	line-height: 27px;
+	color: #404040;
+	cursor: pointer;
+}
+.cius-form .toggle:last-child {
+	margin-bottom: 0;
+}
+.cius-form .toggle input {
+	position: absolute;
+	left: -9999px;
+}
+.cius-form .toggle i {
+	content: '';
+	position: absolute;
+	top: 4px;
+	right: 0;
+	display: block;
+	width: 49px;
+	height: 17px;
+	border-width: 2px;
+	border-style: solid;
+	border-radius: 12px;
+	background: #fff;
+}
+.cius-form .toggle i:after {
+	content: 'OFF';
+	position: absolute;
+	top: 2px;
+	right: 8px;
+	left: 8px;
+	font-style: normal;
+	font-size: 9px;
+	line-height: 13px;
+	font-weight: 700;
+	text-align: left;
+	color: #5f5f5f;
+}
+.cius-form .toggle i:before {
+	content: '';
+	position: absolute;
+	z-index: 1;
+	top: 4px;
+	right: 4px;
+	display: block;
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+	opacity: 1;
+	-ms-transition: right 0.2s;
+	-moz-transition: right 0.2s;
+	-webkit-transition: right 0.2s;
+}
+.cius-form .toggle input:checked + i:after {
+	content: 'ON';
+	text-align: right;
+}
+.cius-form .toggle input:checked + i:before {
+	right: 36px;
+}
+
+
+/**/
+/* ratings */
+/**/
+.cius-form .rating {
+	margin-bottom: 4px;
+	font-size: 15px;
+	line-height: 27px;
+	color: #404040;
+}
+.cius-form .rating:last-child {
+	margin-bottom: 0;
+}
+.cius-form .rating input {
+	position: absolute;
+	left: -9999px;
+}
+.cius-form .rating label {
+	display: block;
+	float: right;
+	height: 17px;
+	margin-top: 5px;
+	padding: 0 2px;
+	font-size: 17px;
+	line-height: 17px;
+	cursor: pointer;
+}
+
+
+/**/
+/* buttons */
+/**/
+.cius-form .button {
+	float: right;
+	height: 39px;
+	overflow: hidden;
+	margin: 10px 0 0 20px;
+	padding: 0 25px;
+	outline: none;
+	border: 0;
+	font: 300 15px/39px 'Open Sans', Helvetica, Arial, sans-serif;
+	text-decoration: none;
+	color: #fff;
+	cursor: pointer;
+}
+.cius-form .button-uploading {
+	position: relative;
+	color: transparent;
+	cursor: default;
+}
+.cius-form .button-uploading:after {
+	content: 'Uploading...';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	-o-animation: blink 1s linear infinite;
+	-ms-animation: blink 1s linear infinite;
+	-moz-animation: blink 1s linear infinite; 
+	-webkit-animation: blink 1s linear infinite;
+}
+@-o-keyframes blink
+{
+  0% {opacity: 1}
+  50% {opacity: 0.3}
+  100% {opacity: 1}
+}
+@-ms-keyframes blink
+{
+  0% {opacity: 1}
+  50% {opacity: 0.3}
+  100% {opacity: 1}
+}
+@-moz-keyframes blink
+{
+  0% {opacity: 1}
+  50% {opacity: 0.3}
+  100% {opacity: 1}
+}
+@-webkit-keyframes blink
+{
+  0% {opacity: 1}
+  50% {opacity: 0.3}
+  100% {opacity: 1}
+}
+
+
+/**/
+/* icons */
+/**/
+.cius-form .icon-append,
+.cius-form .icon-prepend {
+	position: absolute;
+	top: 5px;
+	width: 29px;
+	height: 29px;
+	font-size: 15px;
+	line-height: 29px;
+	text-align: center;
+}
+.cius-form .icon-append {
+	right: 5px;
+	padding-left: 3px;
+	border-left-width: 1px;
+	border-left-style: solid;
+}
+.cius-form .icon-prepend {
+	left: 5px;
+	padding-right: 3px;
+	border-right-width: 1px;
+	border-right-style: solid;
+}
+.cius-form .input .icon-prepend + input,
+.cius-form .textarea .icon-prepend + textarea {
+	padding-left: 46px;
+}
+.cius-form .input .icon-append + input,
+.cius-form .textarea .icon-append + textarea {
+	padding-right: 46px;
+}
+.cius-form .input .icon-prepend + .icon-append + input,
+.cius-form .textarea .icon-prepend + .icon-append + textarea {
+	padding-left: 46px;
+}
+
+
+/**/
+/* grid */
+/**/
+.cius-form .row {
+	margin: 0 -15px;
+        padding: 2px 0 2px 0;
+}
+.cius-form .row:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+#next-step .row:nth-child(odd){
+    background-color: #F9F9F9;
+}
+
+
+.cius-form .col {
+	float: left;
+	min-height: 1px;
+	padding-right: 15px;
+	padding-left: 15px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+.cius-form .col-1 {
+	width: 8.33%;
+}
+.cius-form .col-2 {
+	width: 16.66%;
+}
+.cius-form .col-3 {
+	width: 25%;
+}
+.cius-form .col-4 {
+	width: 33.33%;
+}
+.cius-form .col-5 {
+	width: 41.66%;
+}
+.cius-form .col-6 {
+	width: 50%;
+}
+.cius-form .col-7 {
+	width: 58.33%;
+}
+.cius-form .col-8 {
+	width: 66.67%;
+}
+.cius-form .col-9 {
+	width: 75%;
+}
+.cius-form .col-10 {
+	width: 83.33%;
+}
+.cius-form .col-11 {
+	width: 91.66%;
+}
+@media screen and (max-width: 600px) {
+	.cius-form .col {
+		float: none;
+		width: 100%;
+	}
+}
+
+
+/**/
+/* tooltips */
+/**/
+.cius-form .tooltip {
+	position: absolute;
+	z-index: 1;
+	left: -9999px;
+	padding: 2px 8px 3px;
+	font-size: 11px;
+	line-height: 16px;
+	font-weight: 400;
+	background: rgba(0,0,0,0.9);
+	color: #fff;
+	opacity: 0;
+	-ms-transition: margin 0.3s, opacity 0.3s;
+	-moz-transition: margin 0.3s, opacity 0.3s;
+	-webkit-transition: margin 0.3s, opacity 0.3s;
+}
+.cius-form .tooltip:after {
+	content: '';
+	position: absolute;
+}
+.cius-form .input input:focus + .tooltip,
+.cius-form .textarea textarea:focus + .tooltip {
+	opacity: 1;	
+}
+
+.cius-form .tooltip-top-right {
+	bottom: 100%;
+	margin-bottom: 15px;
+}
+.cius-form .tooltip-top-right:after {
+	top: 100%;
+	right: 16px;	
+	border-top: 4px solid rgba(0,0,0,0.9);
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
+}
+.cius-form .input input:focus + .tooltip-top-right,
+.cius-form .textarea textarea:focus + .tooltip-top-right {
+	right: 0;
+	left: auto;
+	margin-bottom: 5px;
+}
+
+.cius-form .tooltip-top-left {
+	bottom: 100%;
+	margin-bottom: 15px;
+}
+.cius-form .tooltip-top-left:after {
+	top: 100%;
+	left: 16px;
+	border-top: 4px solid rgba(0,0,0,0.9);
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
+}
+.cius-form .input input:focus + .tooltip-top-left,
+.cius-form .textarea textarea:focus + .tooltip-top-left {
+	right: auto;
+	left: 0;
+	margin-bottom: 5px;
+}
+
+.cius-form .tooltip-right {
+	top: 9px;
+	white-space: nowrap;
+	margin-left: 15px;
+}
+.cius-form .tooltip-right:after {
+	top: 6px;
+	right: 100%;
+	border-top: 4px solid transparent;
+	border-right: 4px solid rgba(0,0,0,0.9);
+	border-bottom: 4px solid transparent;
+}
+.cius-form .input input:focus + .tooltip-right,
+.cius-form .textarea textarea:focus + .tooltip-right {
+	left: 100%;
+	margin-left: 5px;
+}
+
+.cius-form .tooltip-left {
+	top: 9px;
+	white-space: nowrap;
+	margin-right: 15px;
+}
+.cius-form .tooltip-left:after {
+	top: 6px;
+	left: 100%;
+	border-top: 4px solid transparent;
+	border-bottom: 4px solid transparent;
+	border-left: 4px solid rgba(0,0,0,0.9);
+}
+.cius-form .input input:focus + .tooltip-left,
+.cius-form .textarea textarea:focus + .tooltip-left {
+	right: 100%;
+	left: auto;
+	margin-right: 5px;
+}
+
+.cius-form .tooltip-bottom-right {
+	top: 100%;
+	margin-top: 15px;
+}
+.cius-form .tooltip-bottom-right:after {
+	bottom: 100%;
+	right: 16px;	
+	border-right: 4px solid transparent;
+	border-bottom: 4px solid rgba(0,0,0,0.9);
+	border-left: 4px solid transparent;
+}
+.cius-form .input input:focus + .tooltip-bottom-right,
+.cius-form .textarea textarea:focus + .tooltip-bottom-right {
+	right: 0;
+	left: auto;
+	margin-top: 5px;
+}
+
+.cius-form .tooltip-bottom-left {
+	top: 100%;
+	margin-top: 15px;
+}
+.cius-form .tooltip-bottom-left:after {
+	bottom: 100%;
+	left: 16px;
+	border-right: 4px solid transparent;
+	border-bottom: 4px solid rgba(0,0,0,0.9);
+	border-left: 4px solid transparent;
+}
+.cius-form .input input:focus + .tooltip-bottom-left,
+.cius-form .textarea textarea:focus + .tooltip-bottom-left {
+	right: auto;
+	left: 0;
+	margin-top: 5px;
+}
+
+
+/**/
+/* normal state */
+/**/
+.cius-form .input input,
+.cius-form .select select,
+.cius-form .textarea textarea,
+.cius-form .radio i,
+.cius-form .checkbox i,
+.cius-form .toggle i,
+.cius-form .icon-append,
+.cius-form .icon-prepend {
+	border-color: #e5e5e5;
+	-ms-transition: border-color 0.3s;
+	-moz-transition: border-color 0.3s;
+	-webkit-transition: border-color 0.3s;
+}
+.cius-form .toggle i:before {
+	background-color: #2da5da;	
+}
+.cius-form .rating label {
+	color: #ccc;
+	-ms-transition: color 0.3s;
+	-moz-transition: color 0.3s;
+	-webkit-transition: color 0.3s;
+}
+.cius-form .button {
+	background-color: #2da5da;
+	opacity: 0.8;
+	-ms-transition: opacity 0.2s;
+	-moz-transition: opacity 0.2s;
+	-webkit-transition: opacity 0.2s;
+}
+.cius-form .button.button-secondary {
+	background-color: #b3b3b3;
+}
+.cius-form .icon-append,
+.cius-form .icon-prepend {
+	color: #ccc;
+}
+
+
+/**/
+/* hover state */
+/**/
+.cius-form .input:hover input,
+.cius-form .select:hover select,
+.cius-form .textarea:hover textarea,
+.cius-form .radio:hover i,
+.cius-form .checkbox:hover i,
+.cius-form .toggle:hover i,
+.cius-form .ui-slider-handle:hover {
+	border-color: #8dc9e5;
+}
+.cius-form .rating input + label:hover,
+.cius-form .rating input + label:hover ~ label {
+	color: #2da5da;
+}
+.cius-form .button:hover {
+	opacity: 1;
+}
+
+
+/**/
+/* focus state */
+/**/
+.cius-form .input input:focus,
+.cius-form .select select:focus,
+.cius-form .textarea textarea:focus,
+.cius-form .radio input:focus + i,
+.cius-form .checkbox input:focus + i,
+.cius-form .toggle input:focus + i {
+	border-color: #2da5da;
+}
+
+
+/**/
+/* checked state */
+/**/
+.cius-form .radio input + i:after {
+	background-color: #2da5da;	
+}
+.cius-form .checkbox input + i:after {
+	color: #2da5da;
+}
+.cius-form .radio input:checked + i,
+.cius-form .checkbox input:checked + i,
+.cius-form .toggle input:checked + i {
+	border-color: #2da5da;	
+}
+.cius-form .rating input:checked ~ label {
+	color: #2da5da;	
+}
+
+
+/**/
+/* error state */
+/**/
+.cius-form .state-error input,
+.cius-form .state-error select,
+.cius-form .state-error textarea,
+.cius-form .radio.state-error i,
+.cius-form .checkbox.state-error i,
+.cius-form .toggle.state-error i {
+	background: #fff0f0;
+}
+.cius-form .state-error select + i {
+	background: #fff0f0;
+	box-shadow: 0 0 0 12px #fff0f0;
+}
+.cius-form .toggle.state-error input:checked + i {
+	background: #fff0f0;
+}
+.cius-form .state-error + em {
+	display: block;
+	margin-top: 6px;
+	padding: 0 1px;
+	font-style: normal;
+	font-size: 11px;
+	line-height: 15px;
+	color: #ee9393;
+}
+.cius-form .rating.state-error + em {
+	margin-top: -4px;
+	margin-bottom: 4px;
+}
+
+
+/**/
+/* success state */
+/**/
+.cius-form .state-success input,
+.cius-form .state-success select,
+.cius-form .state-success textarea,
+.cius-form .radio.state-success i,
+.cius-form .checkbox.state-success i,
+.cius-form .toggle.state-success i {
+	background: #f0fff0;
+}
+.cius-form .state-success select + i {
+	background: #f0fff0;
+	box-shadow: 0 0 0 12px #f0fff0;
+}
+.cius-form .toggle.state-success input:checked + i {
+	background: #f0fff0;
+}
+.cius-form .state-success + em {
+	display: block;
+	margin-top: 6px;
+	padding: 0 1px;
+	font-style: normal;
+	font-size: 11px;
+	line-height: 15px;
+	color: #ee9393;
+}
+.cius-form .note-success {
+	color: #6fb679;
+}
+
+
+/**/
+/* disabled state */
+/**/
+.cius-form .input.state-disabled input,
+.cius-form .select.state-disabled,
+.cius-form .textarea.state-disabled,
+.cius-form .radio.state-disabled,
+.cius-form .checkbox.state-disabled,
+.cius-form .toggle.state-disabled,
+.cius-form .button.state-disabled {
+	cursor: default;
+	opacity: 0.5;
+}
+.cius-form .input.state-disabled:hover input,
+.cius-form .select.state-disabled:hover select,
+.cius-form .textarea.state-disabled:hover textarea,
+.cius-form .radio.state-disabled:hover i,
+.cius-form .checkbox.state-disabled:hover i,
+.cius-form .toggle.state-disabled:hover i {
+	border-color: #e5e5e5;
+}
+
+
+/**/
+/* submited state */
+/**/
+.cius-form .message {
+	display: none;
+	color: #6fb679;
+}
+.cius-form .message i {
+	display: block;
+	margin: 0 auto 20px;
+	width: 81px;
+	height: 81px;
+	border: 1px solid #6fb679;
+	border-radius: 50%;
+	font-size: 30px;
+	line-height: 81px;
+}
+.cius-form.submited fieldset,
+.cius-form.submited footer {
+	display: none;
+}
+.cius-form.submited .message {
+	display: block;
+	padding: 25px 30px;
+	background: rgba(255,255,255,.9);
+	font: 300 18px/27px 'Open Sans', Helvetica, Arial, sans-serif;
+	text-align: center;
+}
+
+
+/**/
+/* datepicker */
+/**/
+.ui-datepicker {
+	display: none;
+	padding: 10px 12px;
+	background: rgba(255,255,255,0.9);
+	box-shadow: 0 0 10px rgba(0,0,0,.3);
+	font: 13px/1.55 'Open Sans', Helvetica, Arial, sans-serif;
+	text-align: center;
+	color: #666;
+}
+.ui-datepicker a {
+	color: #404040;
+}
+.ui-datepicker-header {
+	position: relative;
+	margin: -10px -12px 10px;
+	padding: 10px;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+	font-size: 15px;
+	line-height: 27px;
+}
+.ui-datepicker-prev, 
+.ui-datepicker-next {
+	position: absolute;
+	top: 0;
+	display: block;
+	width: 47px;
+	height: 47px;
+	font-size: 15px;
+	line-height: 47px;
+	text-decoration: none;
+	cursor: pointer;
+}
+.ui-datepicker-prev {
+	left: 0;
+}
+.ui-datepicker-next {
+	right: 0;
+}
+.ui-datepicker-calendar {
+	border-collapse: collapse;
+	font-size: 13px;
+	line-height: 27px;
+}
+.ui-datepicker-calendar th {
+	color: #999;
+}
+.ui-datepicker-calendar a,
+.ui-datepicker-calendar span {
+	display: block;
+	width: 31px;
+	margin: auto;
+	text-decoration: none;
+	color: #404040;
+}
+.ui-datepicker-calendar a:hover {
+	background: rgba(0,0,0,.05);	
+}
+.ui-datepicker-calendar span {
+	color: #bfbfbf;
+}
+.ui-datepicker-today a {
+	font-weight: 700;
+}
+.ui-datepicker-calendar .ui-state-active {
+	background: rgba(0,0,0,.05);
+	cursor: default;	
+}
+.ui-datepicker-inline {
+	border: 2px solid #e5e5e5;
+	background: #fff;
+	box-shadow: none;
+}
+.ui-datepicker-inline .ui-datepicker-header {
+	line-height: 47px;
+}
+.ui-datepicker-inline .ui-datepicker-calendar {
+	width: 100%;
+}
+
+
+/**/
+/* datepicker */
+/**/
+.cius-form .ui-slider {
+	position: relative;
+	height: 3px;
+	border: 2px solid #e5e5e5;
+	background: #fff;
+	margin: 12px 6px 26px;
+}
+.cius-form .ui-slider-handle {
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	margin: -8px 0 0 -8px;
+	border: 2px solid #e5e5e5;
+	outline: none;
+	background: #fff;
+	-ms-transition: border-color 0.3s;
+	-moz-transition: border-color 0.3s;
+	-webkit-transition: border-color 0.3s;
+}
+
+
+/**/
+/* modal */
+/**/
+.cius-form-modal {
+	position: fixed;
+	z-index: 1;
+	display: none;
+	width: 400px;
+}
+.cius-form-modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.7);
+}
+
+
+/**/
+/* bootstrap compatibility */
+/**/
+
+/*
+.cius-form *,
+.cius-form *:after,
+.cius-form *:before {
+	margin: 0;
+	padding: 0;
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+}
+*/
+.cius-form .label {
+	border-radius: 0;
+	font-size: 100%;
+	text-align: left;
+	white-space: normal;
+	color: inherit;
+}
+.cius-form .radio,
+.cius-form .checkbox {
+	font-weight: 400;
+}
+.cius-form .radio + .radio,
+.cius-form .checkbox + .checkbox {
+  margin-top: 0;
+}
