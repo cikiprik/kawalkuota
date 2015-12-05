@@ -8,6 +8,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
@@ -42,11 +44,10 @@ public class Content implements Serializable {
     private String kategori;
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
     @Column(name = "id_content")
-    private String idContent;
+    private Integer idContent;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -67,22 +68,22 @@ public class Content implements Serializable {
     public Content() {
     }
 
-    public Content(String idContent) {
+    public Content(int idContent) {
         this.idContent = idContent;
     }
 
-    public Content(String idContent, String title, String headline, String content) {
+    public Content(int idContent, String title, String headline, String content) {
         this.idContent = idContent;
         this.title = title;
         this.headline = headline;
         this.content = content;
     }
 
-    public String getIdContent() {
+    public int getIdContent() {
         return idContent;
     }
 
-    public void setIdContent(String idContent) {
+    public void setIdContent(int idContent) {
         this.idContent = idContent;
     }
 
