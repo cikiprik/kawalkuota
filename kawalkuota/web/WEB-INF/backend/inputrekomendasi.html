@@ -1,4 +1,19 @@
 <!--subform:rekomendasiAdd-->
+<style type="text/css">
+    #tableRekomendasiDetil_filter{
+        display: none;
+    }
+    #tableRekomendasiDetil_length{
+        display: none;
+    }
+    #headerTable{
+        background-color: #385AD8;
+       
+    }
+    #headerTable th{
+        color: #FFF;  
+    }
+</style>
 <div class="card">
     <div class="header">
         <h4 class="title">Input Rekomendasi</h4>
@@ -47,16 +62,20 @@
         </div>
 
 
-        <button class="btn btn-info btn-fill pull-right"><span class="fa fa-save"></span> Simpan</button>
+        <button class="btn btn-primary btn-fill"><span class="fa fa-save"></span> Simpan</button>
+        <div class="clearfix" style="padding: 10px"></div>
         <hr>
-        <div class="clearfix"></div>
+        <button class="btn btn-info btn-fill btn-xs"><span class="fa fa-plus-square-o"></span> Add</button> 
+        <button class="btn btn-primary btn-fill btn-xs"><span class="fa fa-save"></span> Simpan</button> 
+        <button class="btn btn-success btn-fill btn-xs"><span class="fa fa-angellist"></span> View Selisih</button> 
+        <hr>
         <table class="table table-core table-hover" id="tableRekomendasiDetil" style="padding: 10px">
             <thead>
                 <tr id="headerTable">
-                    <th>No</th>
-                    <th>NOMOR SURAT</th>
-                    <th>NPWP</th>
-                    <th>TIPE</th>
+                    <th>NO</th>
+                    <th>NOMOR HS</th>
+                    <th>KUOTA</th>
+                    <th>KETERANGAN</th>
                     <th>TANGGAL AWAL</th>
                     <th>TANGGAL AKHIR</th>
                     <th>Aksi</th>
@@ -93,7 +112,7 @@
             { "data": "idDetil"},
             { "data": "hscode" },
             { "data": "kuota" },
-            { "data": "keterangan" }
+            { "data": "keterangan" },
 
         ]    
     } 
