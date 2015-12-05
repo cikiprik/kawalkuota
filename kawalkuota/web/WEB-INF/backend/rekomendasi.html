@@ -74,18 +74,20 @@
        } 
     );
    table.rows( { selected: true } ).data();
-        
-    table.columns().every( function () {
+   table.columns().every( function () {
         var column = this;
         jQuery('input', this.footer()).on('keyup click change', function () {
             column.search(this.value).draw();
         } );
     } ); 
 function addRekomendasi(){
-    ajaxView("get", "rekomendasiadd", "", "#content");
+    ajaxView("get", "rekomendasiadd", "p=add", "#content");
 }
 function edit(e){
-    modalOpener("#myModal", "Test", "modalContent");
+    modalOpener("#myModal", "Update Rekomendasi", ajaxView("get", "rekomendasiadd", "p=update", ".modal-body"));
+}
+function hapus(e){
+    modalOpener("#myModal", "Delete Rekomendasi", "modalContent");
 }
 </script>
 <!--/subform:rekomendasi-->

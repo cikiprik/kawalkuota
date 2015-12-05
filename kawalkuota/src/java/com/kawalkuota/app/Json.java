@@ -63,7 +63,7 @@ public class Json extends HttpServlet {
                                 "<button class='btn btn-warning btn-xs btn-fill' "
                                 + "onclick='edit("+rek.getId()+")'>"
                                 + "<i class='fa fa-pencil-square-o'></i></button> "
-                                + "<button class='btn btn-danger btn-xs btn-fill' onclick='delete("+rek.getId()+")'><i class='fa fa-trash-o'></i></button>");
+                                + "<button class='btn btn-danger btn-xs btn-fill' onclick='hapus("+rek.getId()+")'><i class='fa fa-trash-o'></i></button>");
                         }
                                         
                     Gson gson = new Gson();

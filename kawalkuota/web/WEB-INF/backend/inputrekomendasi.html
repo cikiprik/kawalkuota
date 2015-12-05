@@ -121,12 +121,150 @@
             column.search(this.value).draw();
         } );
     } ); 
-    function addRekomendasi(){
-        ajaxView("get", "rekomendasiadd", "", "#content")
-    }
+    
     
     jQuery("#saveHeader").click(function(){
+        var noSurat = jQuery("#noSurat").val();
+        var npwp = jQuery("#npwp").val();
+        var tipe = jQuery("#tipe").val();
+        var tglawal = jQuery("#tglawal").val();
+        var tglakhir = jQuery("#tglakhir").val();
+        var kdijin = jQuery("#kdIjin").val();
         
+         ajaxView("post", "rekomendasiadd", "p=save&"+
+            "&a="+noSurat+
+            "&b="+npwp+
+            "&c="+tipe+
+            "&d="+tglawal+
+            "&e="+tglakhir+
+            "&f="+kdijin, "#content")
     });
 </script>
 <!--/subform:rekomendasiAdd-->
+
+<!--subform:rekomendasiUpdate-->
+<style type="text/css">
+    #tableRekomendasiDetil_filter{
+        display: none;
+    }
+    #tableRekomendasiDetil_length{
+        display: none;
+    }
+    #headerTable{
+        background-color: #385AD8;
+       
+    }
+    #headerTable th{
+        color: #FFF;  
+    }
+</style>
+<div class="card">
+    <div class="header">
+        <h4 class="title">Update Rekomendasi</h4>
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>NomorSurat</label>
+                    <input type="text" class="form-control" placeholder="xx/*/xxx/20xx" id="noSurat" value="{txtNoSurat}"/>
+                </div>        
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>NPWP</label>
+                    <input type="text" class="form-control" placeholder="npwp" id="npwp" value="{txtNpwp}"/>
+                </div>        
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Tipe</label>
+                    <input type="text" class="form-control" placeholder="Tipe" id="tipe" value="{txtTipe}"/>
+                </div>        
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Tgl Awal</label>
+                    <input type="text" class="form-control" placeholder="Tanggal Awal" id="tglAwal" value="{txtTglAwal}"/>
+                </div>        
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Tgl Akhir</label>
+                    <input type="text" class="form-control" placeholder="Tanggal Akhir" id="tglAkhir" value="{txtTglAkhir}"/>
+                </div>        
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Kode Ijin</label>
+                    <input type="text" class="form-control" placeholder="Ijin" id="kdIjin" value="{txtKdIjin}"/>
+                </div>        
+            </div>
+        </div>
+
+
+        <button class="btn btn-primary btn-fill" id="saveHeader"><span class="fa fa-save"></span> Simpan</button>
+        <div class="clearfix" style="padding: 10px"></div>
+        <hr>
+        <button class="btn btn-info btn-fill btn-xs"><span class="fa fa-plus-square-o"></span> Add</button> 
+        <button class="btn btn-primary btn-fill btn-xs"><span class="fa fa-save"></span> Simpan</button> 
+        <button class="btn btn-success btn-fill btn-xs"><span class="fa fa-angellist"></span> View Selisih</button> 
+        <hr>
+        <table class="table table-core table-hover" id="tableRekomendasiDetil" style="padding: 10px">
+            <thead>
+                <tr id="headerTable">
+                    <th>NO</th>
+                    <th>NOMOR HS</th>
+                    <th>KUOTA</th>
+                    <th>KETERANGAN</th>
+                    <th>Aksi</th>
+                </tr>
+
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>No</th>
+                    <th>HSCode</th>
+                    <th>Kuota</th>
+                    <th>Keterangan</th>
+                </tr>
+
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    jQuery('#tableRekomendasiDetil tfoot th').each( function () {
+        var title = jQuery(this).text();
+        jQuery(this).html('<input type="text" placeholder="Cari '+title+'"  class="input-sm form-control"/> ');
+    } );
+    
+    var table= jQuery('#tableRekomendasiDetil').DataTable( 
+    {
+        "ajax": "json?content=rekomendasidetil",
+        "columns": [
+            { "data": "idDetil"},
+            { "data": "hscode" },
+            { "data": "kuota" },
+            { "data": "keterangan" },
+            { "data": "aksi" }
+
+        ]    
+    } 
+);
+    table.rows( { selected: true } ).data();
+        
+    table.columns().every( function () {
+        var column = this;
+        jQuery('input', this.footer()).on('keyup click change', function () {
+            column.search(this.value).draw();
+        } );
+    } ); 
+   
+</script>
+<!--/subform:rekomendasiUpdate-->
