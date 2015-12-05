@@ -82,7 +82,10 @@
         } );
     } ); 
 function addRekomendasi(){
-    ajaxView("get", "rekomendasiadd", "", "#content")
+    ajaxView("get", "rekomendasiadd", "", "#content");
+}
+function edit(e){
+    modalOpener("#myModal", "Test", "modalContent");
 }
 </script>
 <!--/subform:rekomendasi-->
