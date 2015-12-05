@@ -4,51 +4,39 @@
  */
 package com.kawalkuota.app;
 
-import com.kawalkuota.dao.AppService;
-import com.kawalkuota.dao.SuperCtr;
-import com.kawalkuota.entity.Rekomendasi;
-import com.kawalkuota.entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Iterator;
-import java.util.List;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.ahsanfile.html.form.FormLoader;
 
 /**
  *
  * @author Yusrul <yusrul@kemenkeu.go.id>
  */
-@WebServlet(name = "TestApp", urlPatterns = {"/TestApp"})
-public class TestApp extends HttpServlet {
-    @EJB
-    private AppService appService;
+@WebServlet(name = "RekomendasiAdd", urlPatterns = {"/rekomendasiadd"})
+public class RekomendasiAdd extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP
+     * <code>GET</code> and
+     * <code>POST</code> methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-
-//            User user1 = (User) appService.GetBySingle("User","Username","ada");
-//            out.print(user1.getUsername());
-//            
-//            List<User> user = appService.GetBy("User","Username","ada",0,10);
-//            for (Iterator<User> it = user.iterator(); it.hasNext();) {
-//                User us = it.next();
-//                
-//                out.println("ini dia "+us.getUsername());
-//            }
-            List<Rekomendasi> rek = appService.GetAllData("Rekomendasi");
-            for (Rekomendasi rekomendasi : rek) {
-                out.println(" "+rekomendasi.getNoSurat());
-            }
-            
-
-        } finally {
+          
+        } finally {            
             out.close();
         }
     }
@@ -66,7 +54,13 @@ public class TestApp extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+         response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        FormLoader view = new FormLoader(getServletContext().getRealPath("WEB-INF/backend"));
+        view.setActiveForm("rekomendasiadd");
+        
+        view.cleansPlaceholder();
+        out.print(view.getCompressedForm());
     }
 
     /**
@@ -81,7 +75,7 @@ public class TestApp extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
     }
 
     /**

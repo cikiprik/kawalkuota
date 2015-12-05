@@ -44,6 +44,15 @@ public class AppService {
             return null;
         }
     }
+    public <T> List<T> GetAllData(String entityName) {
+         try {
+            List<T> data = emApp.createNamedQuery(StringUtil.Capital(entityName)+".findAll")
+                    .getResultList();
+            return data;
+        } catch (Exception e) {
+            return null;
+        }
+    }
     
     public Object GetBySingle(String entityName, String findBy, Object param) {
          try {

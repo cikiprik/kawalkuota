@@ -1,0 +1,113 @@
+<!--subform:rekomendasiAdd-->
+<div class="card">
+    <div class="header">
+        <h4 class="title">Input Rekomendasi</h4>
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>NomorSurat</label>
+                    <input type="text" class="form-control" placeholder="xx/*/xxx/20xx" id="noSurat"/>
+                </div>        
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>NPWP</label>
+                    <input type="text" class="form-control" placeholder="npwp" id="npwp"/>
+                </div>        
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Tipe</label>
+                    <input type="text" class="form-control" placeholder="Tipe" id="tipe"/>
+                </div>        
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Tgl Awal</label>
+                    <input type="text" class="form-control" placeholder="Tanggal Awal" id="tglAwal"/>
+                </div>        
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Tgl Akhir</label>
+                    <input type="text" class="form-control" placeholder="Tanggal Akhir" id="tglAkhir"/>
+                </div>        
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Kode Ijin</label>
+                    <input type="text" class="form-control" placeholder="Ijin" id="kdIjin"/>
+                </div>        
+            </div>
+        </div>
+
+
+        <button class="btn btn-info btn-fill pull-right"><span class="fa fa-save"></span> Simpan</button>
+        <hr>
+        <div class="clearfix"></div>
+        <table class="table table-core table-hover" id="tableRekomendasiDetil" style="padding: 10px">
+            <thead>
+                <tr id="headerTable">
+                    <th>No</th>
+                    <th>NOMOR SURAT</th>
+                    <th>NPWP</th>
+                    <th>TIPE</th>
+                    <th>TANGGAL AWAL</th>
+                    <th>TANGGAL AKHIR</th>
+                    <th>Aksi</th>
+                </tr>
+
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>No</th>
+                    <th>No Surat</th>
+                    <th>NPWP</th>
+                    <th>Tipe</th>
+                    <th>Tgl Awal</th>
+                    <th>Tgl Akhir</th>
+                    <th>Aksi</th>
+                </tr>
+
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    jQuery('#tableRekomendasiDetil tfoot th').each( function () {
+        var title = jQuery(this).text();
+        jQuery(this).html('<input type="text" placeholder="Cari '+title+'"  class="input-sm form-control"/> ');
+    } );
+    
+    var table= jQuery('#tableRekomendasiDetil').DataTable( 
+    {
+        "ajax": "json?content=rekomendasidetil",
+        "columns": [
+            { "data": "idDetil"},
+            { "data": "hscode" },
+            { "data": "kuota" },
+            { "data": "keterangan" }
+
+        ]    
+    } 
+);
+    table.rows( { selected: true } ).data();
+        
+    table.columns().every( function () {
+        var column = this;
+        jQuery('input', this.footer()).on('keyup click change', function () {
+            column.search(this.value).draw();
+        } );
+    } ); 
+    function addRekomendasi(){
+        ajaxView("get", "rekomendasiadd", "", "#content")
+    }
+</script>
+<!--/subform:rekomendasiAdd-->

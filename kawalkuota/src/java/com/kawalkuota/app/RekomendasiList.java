@@ -18,8 +18,8 @@ import net.ahsanfile.html.form.FormLoader;
  *
  * @author Yusrul <yusrul@kemenkeu.go.id>
  */
-@WebServlet(name = "Rekomendasi", urlPatterns = {"/rekomendasi.html"})
-public class Rekomendasi extends HttpServlet {
+@WebServlet(name = "RekomendasiList", urlPatterns = {"/rekomendasi.html"})
+public class RekomendasiList extends HttpServlet {
 
   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
