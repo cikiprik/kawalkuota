@@ -1,0 +1,215 @@
+<!--subform:userList-->
+<style type="text/css">
+    #tableUser_filter{
+        display: none;
+    }
+    #tableUser_length{
+        display: none;
+    }
+    #headerTable{
+        background-color: #385AD8;
+
+    }
+    #headerTable th{
+        color: #FFF;
+    }
+</style>
+<div class="card">
+    <div class="header"><h4>Data User</h4></div>
+    <div class="content">
+        <div class="row" style="padding-left:20px">
+            <div class="col col-4">
+                <button class="btn btn-info btn-fill btn-sm" onclick="addUser()"> <span class="fa fa-plus-square-o"></span> Add New </button> </li>
+            </div>
+        </div>
+
+        <table class="table table-core table-hover" id="tableUser" style="padding: 10px">
+            <thead>
+                <tr id="headerTable">
+                    <th>NO</th>
+                    <th>USERNAME</th>
+                    <th>LEVEL</th>
+                    <th>AKTIF</th>
+                    <th>EMAIL</th>
+                    <th>PHOTO</th>
+                    <th>AKSI</th>
+                </tr>
+
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>No</th>
+                    <th>username</th>
+                    <th>level</th>
+                    <th>status</th>
+                    <th>email</th>
+                    <th>photo</th>
+                    <th>Aksi</th>
+                </tr>
+
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    jQuery('#tableUser tfoot th').each( function () {
+        var title = jQuery(this).text();
+        jQuery(this).html('<input type="text" placeholder="Cari '+title+'"  class="input-sm form-control"/> ');
+    } );
+    
+    var table= jQuery('#tableUser').DataTable( 
+    {
+        "ajax": "json?content=user",
+        "columns": [
+            { "data": "idUser"},
+            { "data": "username" },
+            { "data": "level" },
+            { "data": "aktif" },
+            { "data": "email" },
+            { "data": "photo" },
+            { "data": "password" }
+
+        ]    
+    } 
+);
+    table.columns().every( function () {
+        var column = this;
+        jQuery('input', this.footer()).on('keyup click change', function () {
+            column.search(this.value).draw();
+        } );
+    } ); 
+    function addUser(){
+        ajaxView("get", "registrasiuser.html", "p=add", "#content");
+    }
+    function edit(e){
+        modalOpener("#myModal", "Update User", ajaxView("get", "registrasiuser", "p=update", ".modal-body"));
+    }
+    function hapus(e){
+        modalOpener("#myModal", "Delete User", "modalContent");
+    }
+</script>
+<!--/subform:userList-->
+<!--subform:userAdd-->
+<div class="card">
+    <div class="header">
+        <h4 class="title">Registrasi</h4>
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Username</label>
+
+                </div>        
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="username" id="username" required min="5" maxlength="10"/>
+                </div>        
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Password</label>
+                </div>        
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" id="password" required/>
+                </div>        
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Level</label>
+                </div>        
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <select id="level" name="level" class="form-control">
+                        <option value="1">User</option>
+                        <option value="2">K/L</option>
+                        <option value="3">Importir</option>
+                        <option value="4">Perdagangan</option>
+                        <option value="9">Admin</option>
+                    </select>
+                </div>        
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Status</label>
+                </div>        
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class="form-group">
+                        <select id="status" name="status" class="form-control">
+                            <option value="1">Aktif</option>
+                            <option value="0">Tidak Aktif</option>
+                        </select>
+                    </div>      
+
+                </div>        
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Photo</label>
+                </div>        
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="photo" id="photo"/>
+                </div>        
+            </div>
+        </div>
+
+
+        <button class="btn btn-primary btn-fill" id="save"><span class="fa fa-save"></span> Simpan</button>
+        <div class="clearfix" style="padding: 10px"></div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery("#save").click(function(){
+        var a = jquery('#username').val();
+        var b = jquery('#password').val();
+        var c = jquery('#level').val();
+        var d = jquery('#status').val();
+        var e = jquery('#photo').val();
+        jQuery.ajax({
+            type: "post",
+            url: "registrasiuser.html",
+            dataType: 'text',
+            data: {
+                user:a,
+                password:b,
+                level:c,
+                status:d,
+                photo:e
+            },
+        
+            success: function(data) {
+                if(data=='ok') {
+                    ajaxView("get", "registrasiuser.html", "p=list", "#content");
+                }else{
+                   alert('gagal');
+                }
+            },
+            error: function() {
+                    alert('gagal');
+            }
+        });
+    });
+               
+</script>
+<!--/subform:userAdd-->

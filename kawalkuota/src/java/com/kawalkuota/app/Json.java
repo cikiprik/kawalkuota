@@ -9,6 +9,7 @@ import com.google.gson.reflect.TypeToken;
 import com.kawalkuota.dao.AppService;
 import com.kawalkuota.entity.Rekomendasi;
 import com.kawalkuota.entity.Rekomendasidetil;
+import com.kawalkuota.entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Type;
@@ -86,6 +87,23 @@ public class Json extends HttpServlet {
                                 + "onclick='edit("+rek.getId()+")'>"
                                 + "<i class='fa fa-pencil-square-o'></i></button> "
                                 + "<button class='btn btn-danger btn-xs btn-fill' onclick='delete("+rek.getId()+")'><i class='fa fa-trash-o'></i></button>");
+                        }
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<List<Rekomendasi>>() {
+                    }.getType();
+                    String json = gson.toJson(td, type);
+                    out.println("{\"data\":"+json+"}");
+                    
+                }
+                if ("user".equals(p)) {
+                    List<User> td = appService.GetAllData("User");
+                    for (Iterator<User> it = td.iterator(); it.hasNext();) {
+                        User rek= it.next();
+                        rek.setPassword(
+                                "<button class='btn btn-warning btn-xs btn-fill' "
+                                + "onclick='edit("+rek.getIdUser()+")'>"
+                                + "<i class='fa fa-pencil-square-o'></i></button> "
+                                + "<button class='btn btn-danger btn-xs btn-fill' onclick='delete("+rek.getIdUser()+")'><i class='fa fa-trash-o'></i></button>");
                         }
                     Gson gson = new Gson();
                     Type type = new TypeToken<List<Rekomendasi>>() {
