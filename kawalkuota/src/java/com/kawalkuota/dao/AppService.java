@@ -66,6 +66,23 @@ public class AppService {
             return null;
         }
     }
+    public String CekLogin(String username, String password) {
+         try {
+             int data = Integer.parseInt(emApp.createQuery("SELECT count(u.idUser) FROM User u WHERE u.username like :username and u.password like :password") 
+              .setParameter("username", username)
+               .setParameter("password", password)
+               .getSingleResult().toString());
+             System.out.println("ttt"+data);
+            if (data>0){
+                return "ok";
+            }else {
+                return "fail";
+            }
+//            return datCa;
+        } catch (Exception e) {
+            return "failed";
+        }
+    }
       
        public Object Simpan(Object o) {
         try {
