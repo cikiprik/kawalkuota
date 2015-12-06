@@ -1,9 +1,9 @@
-<!--subform:rekomendasi-->
+<!--subform:kebutuhan-->
 <style type="text/css">
-    #tableRekomendasi_filter{
+    #tableKebutuhan_filter{
         display: none;
     }
-    #tableRekomendasi_length{
+    #tableKebutuhan_length{
         display: none;
     }
     #headerTable{
@@ -19,31 +19,27 @@
         <div class="content">
             <div class="row" style="padding-left:20px">
                 <div class="col col-4">
-                    <button class="btn btn-info btn-fill btn-sm" onclick="addRekomendasi()"> <span class="fa fa-plus-square-o"></span> Add New </button> </li>
+                    <button class="btn btn-info btn-fill btn-sm" onclick="addKebutuhan()"> <span class="fa fa-plus-square-o"></span> Add New </button> 
                 </div>
              </div>
 
-        <table class="table table-core table-hover" id="tableRekomendasi" style="padding: 10px">
+        <table class="table table-core table-hover" id="tableKebutuhan" style="padding: 10px">
             <thead>
                 <tr id="headerTable">
                     <th>No</th>
-                    <th>NOMOR SURAT</th>
-                    <th>NPWP</th>
-                    <th>TIPE</th>
-                    <th>TANGGAL AWAL</th>
-                    <th>TANGGAL AKHIR</th>
+                    <th>Tahun</th>
+                    <th>Komoditi</th>
+                    <th>Kebutuhan</th>
                     <th>Aksi</th>
                 </tr>
 
             </thead>
             <tfoot>
                 <tr>
-                    <th>No</th>
-                    <th>No Surat</th>
-                    <th>NPWP</th>
-                    <th>Tipe</th>
-                    <th>Tgl Awal</th>
-                    <th>Tgl Akhir</th>
+                     <th>No</th>
+                    <th>Tahun</th>
+                    <th>Komoditi</th>
+                    <th>Kebutuhan</th>
                     <th>Aksi</th>
                 </tr>
 
@@ -54,22 +50,26 @@
 
 
 <script>
-    jQuery('#tableRekomendasi tfoot th').each( function () {
+    jQuery('#tableKebutuhan tfoot th').each( function () {
         var title = jQuery(this).text();
         jQuery(this).html('<input type="text" placeholder="Cari '+title+'"  class="input-sm form-control"/> ');
     } );
     
-    var table= jQuery('#tableRekomendasi').DataTable( 
+    var table= jQuery('#tableKebutuhan').DataTable( 
       {
-        "ajax": "json?content=rekomendasi",
+        "ajax": "json?content=kebutuhan",
         "columns": [
-            { "data": "id"},
-            { "data": "noSurat" },
-            { "data": "npwp" },
-            { "data": "tipe" },
-            { "data": "tglawal" },
-            { "data": "tglakhir" },
-            { "data": "kdIjin" }
+            { "data": "idKebutuhan"},
+            { "data": "tahun", 
+                "render": function (data) {
+                    var date = new Date(data);
+                    return date.getFullYear();
+                }
+            },
+            
+            { "data": "komoditi" },
+            { "data": "jmlKebutuhan" },
+            { "data": "aksi" }
 
         ]    
        } 
@@ -80,14 +80,25 @@
             column.search(this.value).draw();
         } );
     } ); 
-function addRekomendasi(){
-    ajaxView("get", "rekomendasiadd", "p=add", "#content");
+function addKebutuhan(){
+    ajaxView("get", "kebutuhanadd", "p=add", "#content");
 }
 function edit(e){
-    modalOpener("#myModal", "Update Rekomendasi", ajaxView("get", "rekomendasiadd", "p=update", ".modal-body"));
+    modalOpener("#myModal", "Update Kebutuhan", ajaxView("get", "kebutuhanadd", "p=update", ".modal-body"));
 }
 function hapus(e){
-    modalOpener("#myModal", "Delete Rekomendasi", "modalContent");
+    jQuery.ajax({
+        type: "post",
+        url: "kebutuhanadd?p=hapus",
+        dataType: 'text',
+        data: {a:e},
+        success: function(data) {
+            modalOpener("#myModal", "Delete Kebutuhan", data);
+        },
+        error: function() {
+            modalOpener("#myModal", "Delete Kebutuhan", "Gagal");
+        }
+    });
 }
 </script>
-<!--/subform:rekomendasi-->
+<!--/subform:kebutuhan-->

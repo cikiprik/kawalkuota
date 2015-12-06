@@ -63,7 +63,7 @@
                             </a>        
                         </li>
                         <li>
-                            <a href="javascript:void(0)" onclick="modalOpener('#myModal', 'Sembarang', 'modalContent')">
+                            <a href="javascript:void(0)" id="izininsw">
                                 <!--<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>-->
                                 <i class="pe-7s-copy-file"></i> 
                                 <p>Tarik Izin INSW</p>
@@ -78,7 +78,7 @@
                         </li>
                        
                         <li>
-                            <a href="javascript:void(0)" onclick="">
+                            <a href="javascript:void(0)" id=produksi>
                                 <i class="pe-7s-news-paper"></i> 
                                 <p>Produksi Nasional</p>
                             </a>        
@@ -407,7 +407,15 @@
         $("#rekomendasi").click(function(){
             ajaxView("get", "rekomendasi.html", "p=1", "#content");
         });
-        
+        $("#kebutuhan").click(function(){
+            ajaxView("get", "kebutuhan.html", "p=1", "#content");
+        });
+         $("#produksi").click(function(){
+            ajaxView("get", "produksi.html", "p=1", "#content");
+        });
+         $("#izininsw").click(function(){
+            ajaxView("get", "izininsw.html", "p=1", "#content");
+        });
         
         var selector = '.nav li';
         $(selector).click(function(){

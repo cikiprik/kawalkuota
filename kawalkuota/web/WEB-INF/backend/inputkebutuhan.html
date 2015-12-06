@@ -1,0 +1,167 @@
+<!--subform:kebutuhanAdd-->
+<style type="text/css">
+    #tableKebutuhanDetil_filter{
+        display: none;
+    }
+    #tableKebutuhanDetil_length{
+        display: none;
+    }
+    #headerTable{
+        background-color: #385AD8;
+
+    }
+    #headerTable th{
+        color: #FFF;  
+    }
+</style>
+<div class="card">
+    <div class="header">
+        <h4 class="title">Input Kebutuhan</h4>
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Tahun</label>
+                    <input type="text" class="form-control" placeholder="Tahun" id="tahun"/>
+                </div>        
+            </div>
+        
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Komoditi</label>
+                    <input type="text" class="form-control" placeholder="Komoditi" id="komoditi"/>
+                </div>        
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Kebutuhan</label>
+                    <input type="text" class="form-control" placeholder="Kebutuhan" id="jmlKeb"/>
+                </div>        
+            </div>
+        </div>
+
+
+        <button class="btn btn-primary btn-fill" id="saveHeader"><span class="fa fa-save"></span> Simpan</button>
+        <div class="clearfix" style="padding: 10px"></div>
+        <hr>
+<!--        <button class="btn btn-info btn-fill btn-xs"><span class="fa fa-plus-square-o"></span> Add</button> 
+        <button class="btn btn-primary btn-fill btn-xs"><span class="fa fa-save"></span> Simpan</button> 
+        <button class="btn btn-success btn-fill btn-xs"><span class="fa fa-angellist"></span> View Selisih</button> 
+        <hr>
+        <table class="table table-core table-hover" id="tableKebutuhanDetil" style="padding: 10px">
+            <thead>
+                <tr id="headerTable">
+                    <th>NO</th>
+                    <th>NOMOR HS</th>
+                    <th>KUOTA</th>
+                    <th>KETERANGAN</th>
+                    <th>Aksi</th>
+                </tr>
+
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>No</th>
+                    <th>HSCode</th>
+                    <th>Kuota</th>
+                    <th>Keterangan</th>
+                </tr>
+
+            </tfoot>
+        </table>-->
+    </div>
+</div>
+
+
+<script>
+
+    jQuery('#tableKebutuhanDetil tfoot th').each( function () {
+        var title = jQuery(this).text();
+        jQuery(this).html('<input type="text" placeholder="Cari '+title+'"  class="input-sm form-control"/> ');
+    } );
+
+    table.rows( { selected: true } ).data();
+        
+    table.columns().every( function () {
+        var column = this;
+        jQuery('input', this.footer()).on('keyup click change', function () {
+            column.search(this.value).draw();
+        } );
+    } ); 
+    
+    
+    jQuery("#saveHeader").click(function(){
+        var tahun = jQuery("#tahun").val();
+        var komoditi = jQuery("#komoditi").val();
+        var kebutuhan = jQuery("#jmlKeb").val();
+       
+        
+        ajaxView("post", "kebutuhanadd", {p:"save", a:tahun, b:komoditi, c:kebutuhan }, "#content");
+    });
+</script>
+<!--/subform:kebutuhanAdd-->
+
+<!--subform:kebutuhanUpdate-->
+    <div class="content">
+        <div class="row">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Tahun</label>
+                    <input type="text" class="form-control" placeholder="Tahun" id="tahun" value="{txtTahun}"/>
+                </div>        
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Komoditi</label>
+                    <input type="text" class="form-control" placeholder="Komoditi" id="komoditi" value="{txtKomoditi}"/>
+                </div>        
+            </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Kebutuhan</label>
+                    <input type="text" class="form-control" placeholder="Kebutuhan" id="kebutuhan" value="{txtKebutuhan}"/>
+                </div>        
+            </div>
+        </div>
+
+
+        <button class="btn btn-primary btn-fill" id="saveHeader"><span class="fa fa-save"></span> Simpan</button>
+        <div class="clearfix" style="padding: 10px"></div>
+
+    </div>
+
+
+
+<script>
+//    jQuery('#tableKebutuhanDetil tfoot th').each( function () {
+//        var title = jQuery(this).text();
+//        jQuery(this).html('<input type="text" placeholder="Cari '+title+'"  class="input-sm form-control"/> ');
+//    } );
+//    
+//    var table= jQuery('#tableKebutuhanDetil').DataTable( 
+//    {
+//        "ajax": "json?content=kebutuhandetil",
+//        "columns": [
+//            { "data": "tahun"},
+//            { "data": "hscode" },
+//            { "data": "kuota" },
+//            { "data": "keterangan" },
+//            { "data": "aksi" }
+//
+//        ]    
+//    } 
+//);
+//    table.rows( { selected: true } ).data();
+//        
+//    table.columns().every( function () {
+//        var column = this;
+//        jQuery('input', this.footer()).on('keyup click change', function () {
+//            column.search(this.value).draw();
+//        } );
+//    } ); 
+   
+</script>
+<!--/subform:kebutuhanUpdate-->
