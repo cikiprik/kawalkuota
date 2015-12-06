@@ -62,7 +62,8 @@
             { "data": "idProduksi"},
             { "data": "tahun" },
             { "data": "komoditi" },
-            { "data": "jmlProduksi" }
+            { "data": "jmlProduksi" },
+            { "data": "aksi" }
 
         ]    
        } 
@@ -80,7 +81,7 @@ function edit(e){
     modalOpener("#myModal", "Update Produksi", ajaxView("get", "produksiadd", "p=update", ".modal-body"));
 }
 function hapus(e){
-    modalOpener("#myModal", "Delete Produksi", "modalContent");
+    modalOpener("#myModal", "Delete Produksi", "Berhasil Dihapus");
 }
 </script>
 <!--/subform:produksi-->
