@@ -6,7 +6,11 @@
         <meta charset="utf-8">
         <title>{txtTitle}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">        
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+        
+        <link href="css/stylish-portfolio.css" rel="stylesheet">
         <style type="text/css">
             .account-box
             {
@@ -31,6 +35,7 @@
                 margin: 10px 0px 27px 40px;
                 background-position: 0px -4px;
                 position: relative;
+                padding-bottom: 100px;
             }
 
             .forgotLnk
@@ -77,80 +82,83 @@
                 color: #fff;
                 font-weight:bold;
             }
-
+            
         </style>
         <script src="js/jquery.min.1.11.3.js"></script>
         <script src="js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div class="container">
-            
-            <div align="resulte"></div>
+        <header class="header">
+            <div class="container">
 
-            <div class="row">
-                <div class="col-md-3 col-md-offset-4">
-                    <div align="center"><h2> LOGIN KAWAL KUOTA </h2></div>
-                    <div class="account-box">
-                        <div class="logo ">
-                            <img src="img/logo.jpg" alt=""/>
-                        </div>
-                        <div class="form-signin" >
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="username" required autofocus id="username"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password" required id="password" />
-                            </div>
-                            <button class="btn btn-lg btn-block purple-bg" id="login">
-                                <i class="fa fa-sign-in"></i> Sign in</button>
-                        </form>
-                        <a class="forgotLnk" href="lupapassword.html">I can't access my account</a>
+                <div id="resulte"></div>
 
-                        <div class="or-box row-block">
-                            <div class="row">
-                                <div class="col-md-12 row-block">
-                                    <a href="registrasi.html" class="btn btn-primary btn-block">Create New Account</a>
+                <div class="row">
+                    <div class="col-md-3 col-md-offset-4">
+                        <div align="center"><h3><label class="alert alert-info"> Login Kawal Kuota </label></h3></div>
+                        <div class="account-box">
+                            <div class="logo">
+                                <img src="img/face-0.jpg" alt="" width="120px" height="120px"/>
+                            </div>
+                            <div class="form-signin" >
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="username" required autofocus id="username"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Password" required id="password" />
+                                </div>
+                                <button class="btn btn-lg btn-block btn-danger" id="login">
+                                    <i class="fa fa-lock"></i> Sign in</button>
+                                </form>
+                                <div id="ok" style="padding-top:5px; margin-top:5px;">
+                                    <a href="lupapassword.html">I can't access my account</a> | <a  href="index.html" class="pull-right">Home</a>
+                                </div>
+                                <div class="or-box row-block">
+                                    <div class="row">
+                                        <div class="col-md-12 row-block">
+                                            <a href="registrasi.html" class="btn purple-bg btn-block">Create New Account</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </header>
 
-        <script type="text/javascript">
-           $("#login").click(function(){
-            var par1 = btoa($('#username').val());
-            var par2 = btoa($('#password').val());
+            <script type="text/javascript">
+                $("#login").click(function(){
+                    var par1 = btoa($('#username').val());
+                    var par2 = btoa($('#password').val());
            
-                $.ajax({
-                type: "post",
-                url: "login.html",
-                dataType: 'text',
-                data: {
-                    a:par1,
-                    b:par2
-                },
+                    $.ajax({
+                        type: "post",
+                        url: "login.html",
+                        dataType: 'text',
+                        data: {
+                            a:par1,
+                            b:par2
+                        },
         
-                success: function(data) {
-                    if(data=='ok') {
-                        $("#resulte").html(data);
-                        window.location.replace("dashboard.html");
-                    }else{
-                        $("#resulte").html("<div class=\"alert alert-info fade in\">"+
-                        "<a class=\"close\" title=\"close\" aria-label=\"close\" data-dismiss=\"alert\" href=\"#\">x</a><strong>Info!</strong>"+
-                        "Login Gagal</div>");
-                    }
-                },
-                error: function() {
-                    $("#resulte").html("<div class=\"alert alert-info fade in\">"+
-                        "<a class=\"close\" title=\"close\" aria-label=\"close\" data-dismiss=\"alert\" href=\"#\">x</a><strong>Info!</strong>"+
-                        "Login Gagal</div>");
-                }
-            });
-           });
+                        success: function(data) {
+                            if(data=='ok') {
+                                $("#resulte").html(data);
+                                window.location.replace("dashboard.html");
+                            }else{
+                                $("#resulte").html("<div class=\"alert alert-info fade in\">"+
+                                    "<a class=\"close\" title=\"close\" aria-label=\"close\" data-dismiss=\"alert\" href=\"#\">x</a><strong>Info!</strong>"+
+                                    "Login Gagal</div>");
+                            }
+                        },
+                        error: function() {
+                            $("#resulte").html("<div class=\"alert alert-info fade in\">"+
+                                "<a class=\"close\" title=\"close\" aria-label=\"close\" data-dismiss=\"alert\" href=\"#\">x</a><strong>Info!</strong>"+
+                                "Login Gagal</div>");
+                        }
+                    });
+                });
                
-        </script>
+            </script>
     </body>
 </html>
 
