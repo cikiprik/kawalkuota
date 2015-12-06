@@ -44,13 +44,13 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label>Tgl Awal</label>
-                    <input type="text" class="form-control" placeholder="Tanggal Awal" id="tglAwal"/>
+                    <input type="text" class="form-control" placeholder="YYYY-MM-DD" id="tglawal"/>
                 </div>        
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label>Tgl Akhir</label>
-                    <input type="text" class="form-control" placeholder="Tanggal Akhir" id="tglAkhir"/>
+                    <input type="text" class="form-control" placeholder="YYYY-MM-DD" id="tglakhir"/>
                 </div>        
             </div>
             <div class="col-md-4">
@@ -128,17 +128,17 @@
         var noSurat = jQuery("#noSurat").val();
         var npwp = jQuery("#npwp").val();
         var tipe = jQuery("#tipe").val();
-        var tglawal = jQuery("#tglawal").val();
-        var tglakhir = jQuery("#tglakhir").val();
+        var tglawal1 = jQuery("#tglawal").val();
+        var tglakhir1 = jQuery("#tglakhir").val();
         var kdijin = jQuery("#kdIjin").val();
-        
-        ajaxView("post", "rekomendasiadd", "p=save&"+
-            "&a="+noSurat+
-            "&b="+npwp+
-            "&c="+tipe+
-            "&d="+tglawal+
-            "&e="+tglakhir+
-            "&f="+kdijin, "#content")
+        alert(noSurat +"-"+npwp +"-"+tipe+"-"+tglawal1+"-"+tglakhir1+"-"+kdijin);
+//        ajaxView("post", "rekomendasiadd", "p=save"+
+//            "&a="+noSurat+
+//            "&b="+npwp+
+//            "&c="+tipe+
+//            "&d="+tglawal+
+//            "&e="+tglakhir+
+//            "&f="+kdijin, "#content")
     });
 </script>
 <!--/subform:rekomendasiAdd-->

@@ -1,0 +1,226 @@
+<!--subform:produksiAdd-->
+<style type="text/css">
+    #tableProduksiDetil_filter{
+        display: none;
+    }
+    #tableProduksiDetil_length{
+        display: none;
+    }
+    #headerTable{
+        background-color: #385AD8;
+
+    }
+    #headerTable th{
+        color: #FFF;  
+    }
+</style>
+<div class="card">
+    <div class="header">
+        <h4 class="title">Input Produksi</h4>
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Tahun</label>
+                    <input type="text" class="form-control" placeholder="Tahun" id="tglAwal"/>
+                </div>        
+            </div>
+        
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Komoditi</label>
+                    <input type="text" class="form-control" placeholder="Komoditi" id="kdKomoditi"/>
+                </div>        
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Produksi</label>
+                    <input type="text" class="form-control" placeholder="Produksi" id="kdProduksi"/>
+                </div>        
+            </div>
+        </div>
+
+
+        <button class="btn btn-primary btn-fill" id="saveHeader"><span class="fa fa-save"></span> Simpan</button>
+        <div class="clearfix" style="padding: 10px"></div>
+        <hr>
+<!--        <button class="btn btn-info btn-fill btn-xs"><span class="fa fa-plus-square-o"></span> Add</button> 
+        <button class="btn btn-primary btn-fill btn-xs"><span class="fa fa-save"></span> Simpan</button> 
+        <button class="btn btn-success btn-fill btn-xs"><span class="fa fa-angellist"></span> View Selisih</button> 
+        <hr>
+        <table class="table table-core table-hover" id="tableProduksiDetil" style="padding: 10px">
+            <thead>
+                <tr id="headerTable">
+                    <th>NO</th>
+                    <th>NOMOR HS</th>
+                    <th>KUOTA</th>
+                    <th>KETERANGAN</th>
+                    <th>Aksi</th>
+                </tr>
+
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>No</th>
+                    <th>HSCode</th>
+                    <th>Kuota</th>
+                    <th>Keterangan</th>
+                </tr>
+
+            </tfoot>
+        </table>-->
+    </div>
+</div>
+
+
+<script>
+
+    jQuery('#tableProduksiDetil tfoot th').each( function () {
+        var title = jQuery(this).text();
+        jQuery(this).html('<input type="text" placeholder="Cari '+title+'"  class="input-sm form-control"/> ');
+    } );
+//    
+//    var table= jQuery('#tableProduksiDetil').DataTable( 
+//    {
+//        "ajax": "json?content=produksidetil",
+//        "columns": [
+//            { "data": "idDetil"},
+//            { "data": "hscode" },
+//            { "data": "kuota" },
+//            { "data": "keterangan" },
+//            { "data": "aksi" }
+//
+//        ]    
+//    } 
+//);
+    table.rows( { selected: true } ).data();
+        
+    table.columns().every( function () {
+        var column = this;
+        jQuery('input', this.footer()).on('keyup click change', function () {
+            column.search(this.value).draw();
+        } );
+    } ); 
+    
+    
+    jQuery("#saveHeader").click(function(){
+        var tahun = jQuery("#tahun").val();
+        var komoditi = jQuery("#komoditi").val();
+        var produksi = jQuery("#produksi").val();
+       
+        
+        ajaxView("post", "produksiadd", "p=save&"+
+            "&a="+tahun+
+            "&b="+komoditi+
+            "&c="+produksi, "#content")
+    });
+</script>
+<!--/subform:produksiAdd-->
+
+<!--subform:produksiUpdate-->
+<style type="text/css">
+    #tableProduksiDetil_filter{
+        display: none;
+    }
+    #tableProduksiDetil_length{
+        display: none;
+    }
+    #headerTable{
+        background-color: #385AD8;
+
+    }
+    #headerTable th{
+        color: #FFF;  
+    }
+</style>
+<div class="card">
+    <div class="header">
+        <h4 class="title">Update Produksi</h4>
+    </div>
+    <div class="content">
+        <div class="row">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Tahun</label>
+                    <input type="text" class="form-control" placeholder="Tahun" id="tahun" value="{txtTahun}"/>
+                </div>        
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Komoditi</label>
+                    <input type="text" class="form-control" placeholder="Komoditi" id="komoditi" value="{txtKomoditi}"/>
+                </div>        
+            </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Produksi</label>
+                    <input type="text" class="form-control" placeholder="Produksi" id="produksi" value="{txtProduksi}"/>
+                </div>        
+            </div>
+        </div>
+
+
+        <button class="btn btn-primary btn-fill" id="saveHeader"><span class="fa fa-save"></span> Simpan</button>
+        <div class="clearfix" style="padding: 10px"></div>
+        <hr>
+        <button class="btn btn-info btn-fill btn-xs"><span class="fa fa-plus-square-o"></span> Add</button> 
+        <button class="btn btn-primary btn-fill btn-xs"><span class="fa fa-save"></span> Simpan</button> 
+        <hr>
+<!--        <table class="table table-core table-hover" id="tableProduksiDetil" style="padding: 10px">
+            <thead>
+                <tr id="headerTable">
+                    <th>NO</th>
+                    <th>NOMOR HS</th>
+                    <th>KUOTA</th>
+                    <th>KETERANGAN</th>
+                    <th>Aksi</th>
+                </tr>
+
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>No</th>
+                    <th>HSCode</th>
+                    <th>Kuota</th>
+                    <th>Keterangan</th>
+                </tr>
+
+            </tfoot>
+        </table>-->
+    </div>
+</div>
+
+
+<script>
+//    jQuery('#tableProduksiDetil tfoot th').each( function () {
+//        var title = jQuery(this).text();
+//        jQuery(this).html('<input type="text" placeholder="Cari '+title+'"  class="input-sm form-control"/> ');
+//    } );
+//    
+//    var table= jQuery('#tableProduksiDetil').DataTable( 
+//    {
+//        "ajax": "json?content=produksidetil",
+//        "columns": [
+//            { "data": "tahun"},
+//            { "data": "hscode" },
+//            { "data": "kuota" },
+//            { "data": "keterangan" },
+//            { "data": "aksi" }
+//
+//        ]    
+//    } 
+//);
+//    table.rows( { selected: true } ).data();
+//        
+//    table.columns().every( function () {
+//        var column = this;
+//        jQuery('input', this.footer()).on('keyup click change', function () {
+//            column.search(this.value).draw();
+//        } );
+//    } ); 
+   
+</script>
+<!--/subform:produksiUpdate-->

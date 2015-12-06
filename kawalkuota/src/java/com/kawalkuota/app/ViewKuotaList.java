@@ -1,12 +1,12 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.kawalkuota.app;
 
-import com.kawalkuota.dao.AppService;
-import com.kawalkuota.entity.DataLokasi;
 import com.kawalkuota.util.AppConfig;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,16 +18,16 @@ import net.ahsanfile.html.form.FormLoader;
  *
  * @author Yusrul <yusrul@kemenkeu.go.id>
  */
-@WebServlet(name = "Index", urlPatterns = {"/index.html"})
-public class Index extends HttpServlet {
-    @EJB
-    AppService appServ;
+@WebServlet(name = "ViewkuotaList", urlPatterns = {"/viewkuota.html"})
+public class ViewKuotaList extends HttpServlet {
+
+  
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-    
+          
         } finally {            
             out.close();
         }
@@ -37,29 +37,22 @@ public class Index extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text");
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        FormLoader view = new FormLoader(getServletContext().getRealPath("WEB-INF/frontend"));
-        view.setActiveForm("index");
-        view.assignField("Title", AppConfig.getAppsProperty(getServletContext(), "title"));
-        
-        List<DataLokasi> dataLokasi = appServ.GetAllData("DataLokasi");
-        view.assignRepeat(dataLokasi, DataLokasi.class, "listLokasi");
-        
-        
+        FormLoader view = new FormLoader(getServletContext().getRealPath("WEB-INF/backend"));
+        view.setActiveForm("viewkuota");
         
         view.cleansPlaceholder();
-        out.print(view.getActiveForm());
+        out.print(view.getCompressedForm());
     }
 
-    
+   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-  
+        
     }
 
- 
     @Override
     public String getServletInfo() {
         return "Short description";

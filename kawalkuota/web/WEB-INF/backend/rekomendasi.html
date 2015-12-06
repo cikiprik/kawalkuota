@@ -32,7 +32,8 @@
                     <th>TIPE</th>
                     <th>TANGGAL AWAL</th>
                     <th>TANGGAL AKHIR</th>
-                    <th>Aksi</th>
+                    <th>STATUS</th>
+                    <th>AKSI</th>
                 </tr>
 
             </thead>
@@ -44,6 +45,7 @@
                     <th>Tipe</th>
                     <th>Tgl Awal</th>
                     <th>Tgl Akhir</th>
+                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
 
@@ -63,13 +65,25 @@
       {
         "ajax": "json?content=rekomendasi",
         "columns": [
-            { "data": "id"},
+            { "data": "idRekomendasi"},
             { "data": "noSurat" },
             { "data": "npwp" },
             { "data": "tipe" },
-            { "data": "tglawal" },
-            { "data": "tglakhir" },
-            { "data": "kdIjin" }
+            { "data": "tglawal", 
+               "render": function (data) {
+                var date = new Date(data);
+                return date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDay()+1);
+              }
+            },
+            { "data": "tglakhir"
+                ,
+               "render": function (data) {
+                var date = new Date(data);
+                return date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDay()+1);
+              }
+            },
+            { "data": "status" },
+            { "data": "aksi" }
 
         ]    
        } 

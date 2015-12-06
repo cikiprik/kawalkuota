@@ -1,0 +1,104 @@
+<!--subform:kebutuhan-->
+<style type="text/css">
+    #tableKebutuhan_filter{
+        display: none;
+    }
+    #tableKebutuhan_length{
+        display: none;
+    }
+    #headerTable{
+        background-color: #385AD8;
+       
+    }
+    #headerTable th{
+        color: #FFF;
+    }
+</style>
+    <div class="card">
+        <div class="header"><h4>Kebutuhan</h4></div>
+        <div class="content">
+            <div class="row" style="padding-left:20px">
+                <div class="col col-4">
+                    <button class="btn btn-info btn-fill btn-sm" onclick="addKebutuhan()"> <span class="fa fa-plus-square-o"></span> Tambah Baru </button> 
+                </div>
+             </div>
+
+        <table class="table table-core table-hover" id="tableKebutuhan" style="padding: 10px">
+            <thead>
+                <tr id="headerTable">
+                    <th>No</th>
+                    <th>Tahun</th>
+                    <th>Komoditi</th>
+                    <th>Kebutuhan</th>
+                    <th>Aksi</th>
+                </tr>
+
+            </thead>
+            <tfoot>
+                <tr>
+                     <th>No</th>
+                    <th>Tahun</th>
+                    <th>Komoditi</th>
+                    <th>Kebutuhan</th>
+                    <th>Aksi</th>
+                </tr>
+
+            </tfoot>
+        </table>
+        </div>
+    </div>
+
+
+<script>
+    jQuery('#tableKebutuhan tfoot th').each( function () {
+        var title = jQuery(this).text();
+        jQuery(this).html('<input type="text" placeholder="Cari '+title+'"  class="input-sm form-control"/> ');
+    } );
+    
+    var table= jQuery('#tableKebutuhan').DataTable( 
+      {
+        "ajax": "json?content=kebutuhan",
+        "columns": [
+            { "data": "idKebutuhan"},
+            { "data": "tahun", 
+                "render": function (data) {
+                    var date = new Date(data);
+                    return date.getFullYear();
+                }
+            },
+            
+            { "data": "komoditi" },
+            { "data": "jmlKebutuhan" },
+            { "data": "aksi" }
+
+        ]    
+       } 
+    );
+   table.columns().every( function () {
+        var column = this;
+        jQuery('input', this.footer()).on('keyup click change', function () {
+            column.search(this.value).draw();
+        } );
+    } ); 
+function addKebutuhan(){
+    ajaxView("get", "kebutuhanadd", "p=add", "#content");
+}
+function edit(e){
+    modalOpener("#myModal", "Update Kebutuhan", ajaxView("get", "kebutuhanadd", "p=update", ".modal-body"));
+}
+function hapus(e){
+    jQuery.ajax({
+        type: "post",
+        url: "kebutuhanadd?p=hapus",
+        dataType: 'text',
+        data: {a:e},
+        success: function(data) {
+            modalOpener("#myModal", "Delete Kebutuhan", data);
+        },
+        error: function() {
+            modalOpener("#myModal", "Delete Kebutuhan", "Gagal");
+        }
+    });
+}
+</script>
+<!--/subform:kebutuhan-->

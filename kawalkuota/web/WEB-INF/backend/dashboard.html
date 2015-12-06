@@ -21,7 +21,7 @@
 
         <script src="js/jquery.min.1.11.3.js" type="text/javascript"></script>
         <style>
-        .datepicker{z-index:999999 !important;}
+            .datepicker{z-index:999999 !important;}
         </style>
 
     </head>
@@ -49,22 +49,56 @@
                             </a>
                         </li> 
                         <li>
-                            <a href="javascript:void(0)" onclick="modalOpener('#myModal', 'Sembarang', 'modalContent')">
+                            <a href="javascript:void(0)" id="kebutuhan">
                                 <!--<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>-->
                                 <i class="pe-7s-note2"></i> 
                                 <p>Data Kebutuhan</p>
                             </a>        
                         </li>
                         <li>
-                            <a href="javascript:void(0)" onclick="">
+                            <a href="javascript:void(0)" id="registrasiuser">
+                                <!--<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>-->
+                                <i class="pe-7s-user"></i> 
+                                <p>Otoritas User</p>
+                            </a>        
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" id="izininsw">
+                                <!--<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>-->
+                                <i class="pe-7s-copy-file"></i> 
+                                <p>Tarik Izin INSW</p>
+                            </a>        
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" id="datapib">
+                                <!--<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>-->
+                                <i class="pe-7s-upload"></i> 
+                                <p>Tarik Data Pib</p>
+                            </a>        
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0)" id=produksi>
                                 <i class="pe-7s-news-paper"></i> 
                                 <p>Produksi Nasional</p>
                             </a>        
                         </li>
                         <li>
-                            <a href="javascript:void(0)" onclick="">
+                            <a href="javascript:void(0)" id="viewkuota">
                                 <i class="pe-7s-science"></i> 
                                 <p>View Kuota</p>
+                            </a>        
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" id="viewrealisasi">
+                                <i class="pe-7s-bell"></i> 
+                                <p>View Realisasi</p>
+                            </a>        
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" onclick="">
+                                <i class="pe-7s-ticket"></i> 
+                                <p>View Status</p>
                             </a>        
                         </li>
 
@@ -373,7 +407,29 @@
         $("#rekomendasi").click(function(){
             ajaxView("get", "rekomendasi.html", "p=1", "#content");
         });
+        $("#kebutuhan").click(function(){
+            ajaxView("get", "kebutuhan.html", "p=1", "#content");
+        });
+        $("#produksi").click(function(){
+            ajaxView("get", "produksi.html", "p=1", "#content");
+        });
+        $("#izininsw").click(function(){
+            ajaxView("get", "izininsw.html", "p=1", "#content");
+        });
+        $("#registrasiuser").click(function(){
+            ajaxView("get", "registrasiuser.html", "p=list", "#content");
+        });
         
+        $("#datapib").click(function(){
+            ajaxView("get", "datapib.html", "p=1", "#content");
+        });
+        
+        $("#viewkuota").click(function(){
+            ajaxView("get", "viewkuota.html", "p=1", "#content");
+        });
+        $("#viewrealisasi").click(function(){
+            ajaxView("get", "viewrealisasi.html", "p=1", "#content");
+        });
         
         var selector = '.nav li';
         $(selector).click(function(){

@@ -104,12 +104,12 @@
                             <button class="btn btn-lg btn-block purple-bg" id="login">
                                 <i class="fa fa-sign-in"></i> Sign in</button>
                         </form>
-                        <a class="forgotLnk" href="lupapassword">I can't access my account</a>
+                        <a class="forgotLnk" href="lupapassword.html">I can't access my account</a>
 
                         <div class="or-box row-block">
                             <div class="row">
                                 <div class="col-md-12 row-block">
-                                    <a href="registrasi" class="btn btn-primary btn-block">Create New Account</a>
+                                    <a href="registrasi.html" class="btn btn-primary btn-block">Create New Account</a>
                                 </div>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
            $("#login").click(function(){
             var par1 = btoa($('#username').val());
             var par2 = btoa($('#password').val());
-            alert(par1+par2);
+           
                 $.ajax({
                 type: "post",
                 url: "login.html",

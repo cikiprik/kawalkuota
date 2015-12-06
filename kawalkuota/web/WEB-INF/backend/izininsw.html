@@ -1,0 +1,92 @@
+<!--subform:izininsw-->
+<style type="text/css">
+    #tableIzininsw_filter{
+        display: none;
+    }
+    #tableIzininsw_length{
+        display: none;
+    }
+    #headerTable{
+        background-color: #385AD8;
+
+    }
+    #headerTable th{
+        color: #FFF;
+    }
+</style>
+<div class="card">
+    <div class="header"><h4>Tarik Izin Insw</h4></div>
+    <div class="content">
+        <div class="row" style="padding-left:20px">
+                <div class="col col-md-2">
+                     <label>No Izin</label>
+                    <input type="text" class="form-control" placeholder="No Izin" id="noIzin"/>
+                    <label>Tgl Izin</label>
+                    <input type="text" class="form-control" placeholder="Tgl Izin" id="tglIzin"/><br>
+                <button class="btn btn-info btn-fill btn-sm" onclick="getIzininsw()"> <span class="fa fa-plus-square-o"></span> Get Data INSW </button> 
+                </div>
+        </div>
+
+        <table class="table table-core table-hover" id="tableIzininsw" style="padding: 10px">
+            <thead>
+                <tr id="headerTable">
+                    <th>No Izin</th>
+                    <th>Tgl Izin</th>
+                    <th>Tgl Awal</th>
+                    <th>Tgl Akhir</th>
+                    <th>Nama Perusahaan</th>
+                    <th>GA</th>
+                </tr>
+
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>No Izin</th>
+                    <th>Tgl Izin</th>
+                    <th>Tgl Awal</th>
+                    <th>Tgl Akhir</th>
+                    <th>Nama Perusahaan</th>
+                    <th>GA</th>
+                </tr>
+
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    jQuery('#tableIzininsw tfoot th').each( function () {
+        var title = jQuery(this).text();
+        jQuery(this).html('<input type="text" placeholder="Cari '+title+'"  class="input-sm form-control"/> ');
+    } );
+    
+    var table= jQuery('#tableIzininsw').DataTable( 
+    {
+//        "ajax": "json?content=izininsw",
+//        "columns": [
+//            { "data": "id"},
+//            { "data": "tahun" },
+//            { "data": "komoditi" },
+//            { "data": "izininsw" }
+//
+//        ]    
+    } 
+);
+    table.columns().every( function () {
+        var column = this;
+        jQuery('input', this.footer()).on('keyup click change', function () {
+            column.search(this.value).draw();
+        } );
+    } ); 
+    function addIzininsw(){
+        ajaxView("get", "izininswadd", "p=add", "#content");
+    }
+    function edit(e){
+        modalOpener("#myModal", "Update Izininsw", ajaxView("get", "izininswadd", "p=update", ".modal-body"));
+    }
+    function hapus(e){
+        modalOpener("#myModal", "Delete Izininsw", "modalContent");
+    }
+</script>
+<!--/subform:izininsw-->
