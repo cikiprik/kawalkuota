@@ -70,7 +70,7 @@
                             </a>        
                         </li>
                         <li>
-                            <a href="javascript:void(0)" onclick="modalOpener('#myModal', 'Sembarang', 'modalContent')">
+                            <a href="javascript:void(0)" id="datapib">
                                 <!--<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>-->
                                 <i class="pe-7s-upload"></i> 
                                 <p>Tarik Data Pib</p>
@@ -84,13 +84,13 @@
                             </a>        
                         </li>
                         <li>
-                            <a href="javascript:void(0)" onclick="">
+                            <a href="javascript:void(0)" id="viewkuota">
                                 <i class="pe-7s-science"></i> 
                                 <p>View Kuota</p>
                             </a>        
                         </li>
                         <li>
-                            <a href="javascript:void(0)" onclick="">
+                            <a href="javascript:void(0)" id="viewrealisasi">
                                 <i class="pe-7s-bell"></i> 
                                 <p>View Realisasi</p>
                             </a>        
@@ -415,6 +415,16 @@
         });
          $("#izininsw").click(function(){
             ajaxView("get", "izininsw.html", "p=1", "#content");
+        });
+         $("#datapib").click(function(){
+            ajaxView("get", "datapib.html", "p=1", "#content");
+        });
+        
+         $("#viewkuota").click(function(){
+            ajaxView("get", "viewkuota.html", "p=1", "#content");
+        });
+         $("#viewrealisasi").click(function(){
+            ajaxView("get", "viewrealisasi.html", "p=1", "#content");
         });
         
         var selector = '.nav li';

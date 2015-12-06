@@ -1,0 +1,92 @@
+<!--subform:datapib-->
+<style type="text/css">
+    #tableDatapib_filter{
+        display: none;
+    }
+    #tableDatapib_length{
+        display: none;
+    }
+    #headerTable{
+        background-color: #385AD8;
+
+    }
+    #headerTable th{
+        color: #FFF;
+    }
+</style>
+<div class="card">
+    <div class="header"><h4>Tarik PIB</h4></div>
+    <div class="content">
+        <div class="row" style="padding-left:20px">
+                <div class="col col-md-2">
+                     <label>No Aju</label>
+                    <input type="text" class="form-control" placeholder="No Aju" id="noAju"/>
+                    <label>Tgl PIB</label>
+                    <input type="text" class="form-control" placeholder="Tgl Aju" id="tglAju"/>
+                    <label>Nama Perusahaan</label>
+                    <input type="text" class="form-control" placeholder="Nama Perusahaan" id="nmPerusahaan"/><br>
+                <button class="btn btn-info btn-fill btn-sm" onclick="getDatapib()"> <span class="fa fa-plus-square-o"></span> Get Data PIB </button> 
+                </div>
+        </div>
+
+        <table class="table table-core table-hover" id="tableDatapib" style="padding: 10px">
+            <thead>
+                <tr id="headerTable">
+                    <th>No Aju</th>
+                    <th>Tgl PIB</th>
+                    <th>Nama Perusahaan</th>
+                    <th>Pelabuhan Bongkar</th>
+                    <th>Negara Asal</th>
+                </tr>
+
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>No Aju</th>
+                    <th>Tgl PIB</th>
+                    <th>Nama Perusahaan</th>
+                    <th>Pelabuhan Bongkar</th>
+                    <th>Negara Asal</th>
+                </tr>
+
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    jQuery('#tableDatapib tfoot th').each( function () {
+        var title = jQuery(this).text();
+        jQuery(this).html('<input type="text" placeholder="Cari '+title+'"  class="input-sm form-control"/> ');
+    } );
+    
+    var table= jQuery('#tableDatapib').DataTable( 
+    {
+//        "ajax": "json?content=datapib",
+//        "columns": [
+//            { "data": "id"},
+//            { "data": "tahun" },
+//            { "data": "komoditi" },
+//            { "data": "datapib" }
+//
+//        ]    
+    } 
+);
+    table.columns().every( function () {
+        var column = this;
+        jQuery('input', this.footer()).on('keyup click change', function () {
+            column.search(this.value).draw();
+        } );
+    } ); 
+    function addDatapib(){
+        ajaxView("get", "datapibadd", "p=add", "#content");
+    }
+    function edit(e){
+        modalOpener("#myModal", "Update Datapib", ajaxView("get", "datapibadd", "p=update", ".modal-body"));
+    }
+    function hapus(e){
+        modalOpener("#myModal", "Delete Datapib", "modalContent");
+    }
+</script>
+<!--/subform:datapib-->
