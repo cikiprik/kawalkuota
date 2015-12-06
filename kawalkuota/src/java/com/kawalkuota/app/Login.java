@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import net.ahsanfile.html.form.FormLoader;
 import net.ahsanfile.html.helper.HTMLString;
 
@@ -53,9 +54,10 @@ public class Login extends HttpServlet {
         PrintWriter out = response.getWriter();
         String user = new Encript().decriptCode(request.getParameter("a"));
         String password = new Encript().decriptCode(request.getParameter("b"));
-        
+        HttpSession hs = request.getSession();
         try{
             String x = crud.CekLogin(user, password);
+            hs.getAttribute("");
             out.print(x);
         }catch(Exception e){
             e.printStackTrace();

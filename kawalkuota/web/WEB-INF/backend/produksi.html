@@ -57,14 +57,15 @@
     
     var table= jQuery('#tableProduksi').DataTable( 
       {
-//        "ajax": "json?content=produksi",
-//        "columns": [
-//            { "data": "id"},
-//            { "data": "tahun" },
-//            { "data": "komoditi" },
-//            { "data": "produksi" }
-//
-//        ]    
+        "ajax": "json?content=produksi",
+        "columns": [
+            { "data": "idProduksi"},
+            { "data": "tahun" },
+            { "data": "komoditi" },
+            { "data": "jmlProduksi" },
+            { "data": "aksi" }
+
+        ]    
        } 
     );
    table.columns().every( function () {
@@ -80,7 +81,7 @@ function edit(e){
     modalOpener("#myModal", "Update Produksi", ajaxView("get", "produksiadd", "p=update", ".modal-body"));
 }
 function hapus(e){
-    modalOpener("#myModal", "Delete Produksi", "modalContent");
+    modalOpener("#myModal", "Delete Produksi", "Berhasil Dihapus");
 }
 </script>
 <!--/subform:produksi-->

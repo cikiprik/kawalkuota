@@ -62,8 +62,8 @@
                                 <p>Otoritas User</p>
                             </a>        
                         </li>
-                        <li>
-                            <a href="javascript:void(0)" id="izininsw">
+                        <li id="izininsw">
+                            <a href="#izininsw" >
                                 <!--<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>-->
                                 <i class="pe-7s-copy-file"></i> 
                                 <p>Tarik Izin INSW</p>
@@ -96,7 +96,7 @@
                             </a>        
                         </li>
                         <li>
-                            <a href="javascript:void(0)" onclick="">
+                            <a href="javascript:void(0)" onclick="" id="rekomendasi">
                                 <i class="pe-7s-ticket"></i> 
                                 <p>View Status</p>
                             </a>        
@@ -417,7 +417,7 @@
             ajaxView("get", "izininsw.html", "p=1", "#content");
         });
         $("#registrasiuser").click(function(){
-            ajaxView("get", "registrasiuser.html", "p=list", "#content");
+            ajaxView("get", "registrasiuser.html", "p=list  ", "#content");
         });
         
         $("#datapib").click(function(){
