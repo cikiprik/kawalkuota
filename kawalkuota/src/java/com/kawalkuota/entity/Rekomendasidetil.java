@@ -29,8 +29,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Rekomendasidetil.findAll", query = "SELECT r FROM Rekomendasidetil r"),
-    @NamedQuery(name = "Rekomendasidetil.findByIdDetil", query = "SELECT r FROM Rekomendasidetil r WHERE r.idDetil = :idDetil"),
-    @NamedQuery(name = "Rekomendasidetil.findById", query = "SELECT r FROM Rekomendasidetil r WHERE r.id = :id"),
+    @NamedQuery(name = "Rekomendasidetil.findByIdDetilRekomendasi", query = "SELECT r FROM Rekomendasidetil r WHERE r.idDetilRekomendasi = :idDetilRekomendasi"),
+    @NamedQuery(name = "Rekomendasidetil.findByIdRekomendasi", query = "SELECT r FROM Rekomendasidetil r WHERE r.idRekomendasi = :idRekomendasi"),
     @NamedQuery(name = "Rekomendasidetil.findByHscode", query = "SELECT r FROM Rekomendasidetil r WHERE r.hscode = :hscode"),
     @NamedQuery(name = "Rekomendasidetil.findByKuota", query = "SELECT r FROM Rekomendasidetil r WHERE r.kuota = :kuota"),
     @NamedQuery(name = "Rekomendasidetil.findByFlag", query = "SELECT r FROM Rekomendasidetil r WHERE r.flag = :flag")})
@@ -39,12 +39,12 @@ public class Rekomendasidetil implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_detil")
-    private Integer idDetil;
+    @Column(name = "id_detil_rekomendasi")
+    private Integer idDetilRekomendasi;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_rekomendasi")
+    private int idRekomendasi;
     @Size(max = 10)
     @Column(name = "hscode")
     private String hscode;
@@ -63,30 +63,30 @@ public class Rekomendasidetil implements Serializable {
     public Rekomendasidetil() {
     }
 
-    public Rekomendasidetil(Integer idDetil) {
-        this.idDetil = idDetil;
+    public Rekomendasidetil(Integer idDetilRekomendasi) {
+        this.idDetilRekomendasi = idDetilRekomendasi;
     }
 
-    public Rekomendasidetil(Integer idDetil, int id, String flag) {
-        this.idDetil = idDetil;
-        this.id = id;
+    public Rekomendasidetil(Integer idDetilRekomendasi, int idRekomendasi, String flag) {
+        this.idDetilRekomendasi = idDetilRekomendasi;
+        this.idRekomendasi = idRekomendasi;
         this.flag = flag;
     }
 
-    public Integer getIdDetil() {
-        return idDetil;
+    public Integer getIdDetilRekomendasi() {
+        return idDetilRekomendasi;
     }
 
-    public void setIdDetil(Integer idDetil) {
-        this.idDetil = idDetil;
+    public void setIdDetilRekomendasi(Integer idDetilRekomendasi) {
+        this.idDetilRekomendasi = idDetilRekomendasi;
     }
 
-    public int getId() {
-        return id;
+    public int getIdRekomendasi() {
+        return idRekomendasi;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdRekomendasi(int idRekomendasi) {
+        this.idRekomendasi = idRekomendasi;
     }
 
     public String getHscode() {
@@ -124,7 +124,7 @@ public class Rekomendasidetil implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idDetil != null ? idDetil.hashCode() : 0);
+        hash += (idDetilRekomendasi != null ? idDetilRekomendasi.hashCode() : 0);
         return hash;
     }
 
@@ -135,7 +135,7 @@ public class Rekomendasidetil implements Serializable {
             return false;
         }
         Rekomendasidetil other = (Rekomendasidetil) object;
-        if ((this.idDetil == null && other.idDetil != null) || (this.idDetil != null && !this.idDetil.equals(other.idDetil))) {
+        if ((this.idDetilRekomendasi == null && other.idDetilRekomendasi != null) || (this.idDetilRekomendasi != null && !this.idDetilRekomendasi.equals(other.idDetilRekomendasi))) {
             return false;
         }
         return true;
@@ -143,7 +143,7 @@ public class Rekomendasidetil implements Serializable {
 
     @Override
     public String toString() {
-        return "com.kawalkuota.entity.Rekomendasidetil[ idDetil=" + idDetil + " ]";
+        return "com.kawalkuota.entity.Rekomendasidetil[ idDetilRekomendasi=" + idDetilRekomendasi + " ]";
     }
     
 }

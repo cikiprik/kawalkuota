@@ -34,6 +34,16 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "User.findByLevel", query = "SELECT u FROM User u WHERE u.level = :level"),
     @NamedQuery(name = "User.findByAktif", query = "SELECT u FROM User u WHERE u.aktif = :aktif")})
 public class User implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "ga")
+    private String ga;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "nm_perusahaan")
+    private String nmPerusahaan;
     @Column(name = "level")
     private Integer level;
     @Column(name = "aktif")
@@ -161,6 +171,22 @@ public class User implements Serializable {
 
     public void setAktif(Integer aktif) {
         this.aktif = aktif;
+    }
+
+    public String getGa() {
+        return ga;
+    }
+
+    public void setGa(String ga) {
+        this.ga = ga;
+    }
+
+    public String getNmPerusahaan() {
+        return nmPerusahaan;
+    }
+
+    public void setNmPerusahaan(String nmPerusahaan) {
+        this.nmPerusahaan = nmPerusahaan;
     }
     
 }

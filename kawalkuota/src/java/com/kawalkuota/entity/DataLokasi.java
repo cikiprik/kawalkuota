@@ -15,6 +15,7 @@ import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -32,6 +33,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DataLokasi.findByLng", query = "SELECT d FROM DataLokasi d WHERE d.lng = :lng"),
     @NamedQuery(name = "DataLokasi.findByNamaLokasi", query = "SELECT d FROM DataLokasi d WHERE d.namaLokasi = :namaLokasi")})
 public class DataLokasi implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "pel_bongkar")
+    private String pelBongkar;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -122,6 +128,14 @@ public class DataLokasi implements Serializable {
     @Override
     public String toString() {
         return "com.kawalkuota.entity.DataLokasi[ idLokasi=" + idLokasi + " ]";
+    }
+
+    public String getPelBongkar() {
+        return pelBongkar;
+    }
+
+    public void setPelBongkar(String pelBongkar) {
+        this.pelBongkar = pelBongkar;
     }
     
 }
