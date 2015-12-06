@@ -17,7 +17,7 @@
 <div class="card">
     <div class="header"><h4>View Kuota</h4></div>
     <div class="content">
-        <div class="row" style="padding-left:20px">
+<!--        <div class="row" style="padding-left:20px">
             <div class="col col-md-2">
                 <label>No Izin</label>
                 <input type="text" class="form-control" placeholder="No Izin" id="noIzin"/>
@@ -25,24 +25,28 @@
                 <input type="text" class="form-control" placeholder="Tgl Izin" id="tglIzin"/><br>
                 <button class="btn btn-info btn-fill btn-sm" onclick="getViewkuota()"> <span class="fa fa-plus-square-o"></span> Cari </button> 
             </div>
-        </div>
+        </div>-->
 
         <table class="table table-core table-hover" id="tableViewkuota" style="padding: 10px">
             <thead>
                 <tr id="headerTable">
+                    <th>No </th>
                     <th>No Izin</th>
                     <th>Tgl Izin</th>
                     <th>Pelabuhan Bongkar</th>
                     <th>Negara Asal</th>
+                    <th>Aksi</th>
                 </tr>
 
             </thead>
             <tfoot>
                 <tr>
+                    <th>No</th>
                     <th>No Izin</th>
                     <th>Tgl Izin</th>
                     <th>Pelabuhan Bongkar</th>
                     <th>Negara Asal</th>
+                    <th>Aksi</th>
                 </tr>
 
             </tfoot>
@@ -56,15 +60,17 @@
         var title = jQuery(this).text();
         jQuery(this).html('<input type="text" placeholder="Cari '+title+'"  class="input-sm form-control"/> ');
     } );
-    
+//     id_ijin 	no_ijin 	tgl_ijin 	negara 	pel_bongkar
     var table= jQuery('#tableViewkuota').DataTable( 
     {
         "ajax": "json?content=viewkuota",
         "columns": [
-            { "data": "id"},
-            { "data": "tahun" },
-            { "data": "komoditi" },
-            { "data": "viewkuota" }
+            { "data": "num"},
+            { "data": "noIjin"},
+            { "data": "tglIjin" },
+            { "data": "pelBongkar" },
+            { "data": "negara" },
+            { "data": "aksi" },
 
         ]    
     } 
@@ -75,14 +81,8 @@
             column.search(this.value).draw();
         } );
     } ); 
-    function addViewkuota(){
-        ajaxView("get", "viewkuotaadd", "p=add", "#content");
-    }
-    function edit(e){
-        modalOpener("#myModal", "Update Viewkuota", ajaxView("get", "viewkuotaadd", "p=update", ".modal-body"));
-    }
-    function hapus(e){
-        modalOpener("#myModal", "Delete Viewkuota", "modalContent");
-    }
+  function detil(e){
+      modalOpener("#myModal", "Detil Data", "");
+  }
 </script>
 <!--/subform:viewkuota-->

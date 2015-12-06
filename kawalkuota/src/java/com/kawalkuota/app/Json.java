@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kawalkuota.dao.AppService;
 import com.kawalkuota.dto.KebutuhanJson;
+import com.kawalkuota.dto.KuotaJson;
 import com.kawalkuota.dto.ProduksiJson;
 import com.kawalkuota.dto.RekomendasiJson;
 import com.kawalkuota.entity.Ijin;
@@ -18,6 +19,7 @@ import com.kawalkuota.entity.Produksi;
 import com.kawalkuota.entity.Rekomendasi;
 import com.kawalkuota.entity.Rekomendasidetil;
 import com.kawalkuota.entity.User;
+import com.kawalkuota.entity.Vkuota;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Type;
@@ -145,7 +147,7 @@ public class Json extends HttpServlet {
             if ("kebutuhan".equals(p)) {
                 List<KebutuhanJson> jso = new ArrayList<KebutuhanJson>();
                 i = 0;
-            
+
                 List<Kebutuhan> td = appService.GetAllData("Kebutuhan");
                 for (Iterator<Kebutuhan> it = td.iterator(); it.hasNext();) {
                     Kebutuhan kebutuhan = it.next();
@@ -219,10 +221,31 @@ public class Json extends HttpServlet {
 //                    System.out.println("" + json);
                 } catch (Exception e) {
                 }
-
-
             }
+            if ("viewkuota".equals(p)) {
+                List<KuotaJson> jso = new ArrayList<KuotaJson>();
+                i = 0;
+                List<Vkuota> td = appService.GetAllData("Vkuota");
+                for (Iterator<Vkuota> it = td.iterator(); it.hasNext();) {
+                    Vkuota v = it.next();
+                    KuotaJson j = new KuotaJson();
+                    j.setIdIjin(v.getIdIjin());
+                    j.setNum(i);
+                    j.setNegara(v.getNegara());
+                    j.setPelBongkar(v.getPelBongkar());
+                    j.setTglIjin(v.getTglIjin());
+                    j.setNoIjin(v.getNoIjin());
+                    j.setAksi("<button class='btn btn-success btn-xs btn-fill' onclick='detil(" + v.getIdIjin() + ")'><i class='fa fa-search'></i></button>");
+                    jso.add(j);
+                }
+                
 
+                Gson gson = new Gson();
+                Type type = new TypeToken<List<Vkuota>>() {
+                }.getType();
+                String json = gson.toJson(jso, type);
+                out.println("{\"data\":" + json + "}");
+            }
 
         } catch (Exception ex) {
             Logger.getLogger(Json.class.getName()).log(Level.SEVERE, null, ex);
