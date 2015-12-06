@@ -19,10 +19,10 @@
     <div class="content">
         <div class="row" style="padding-left:20px">
                 <div class="col col-md-2">
-                     <label>No Izin</label>
+<!--                     <label>No Izin</label>
                     <input type="text" class="form-control" placeholder="No Izin" id="noIzin"/>
                     <label>Tgl Izin</label>
-                    <input type="text" class="form-control" placeholder="Tgl Izin" id="tglIzin"/><br>
+                    <input type="text" class="form-control" placeholder="Tgl Izin" id="tglIzin"/><br>-->
                 <button class="btn btn-info btn-fill btn-sm" onclick="getIzininsw()"> <span class="fa fa-plus-square-o"></span> Get Data INSW </button> 
                 </div>
         </div>
@@ -63,14 +63,16 @@
     
     var table= jQuery('#tableIzininsw').DataTable( 
     {
-//        "ajax": "json?content=izininsw",
-//        "columns": [
-//            { "data": "id"},
-//            { "data": "tahun" },
-//            { "data": "komoditi" },
-//            { "data": "izininsw" }
-//
-//        ]    
+        "ajax": "json?content=izininsw",
+        "columns": [
+            { "data": "noIjin"},
+            { "data": "tglIjin" },
+            { "data": "tglAwal" },
+            { "data": "tglAkhir" },
+            { "data": "nmPerusahaan" },
+            { "data": "ga" }
+
+        ]    
     } 
 );
     table.columns().every( function () {
@@ -79,14 +81,14 @@
             column.search(this.value).draw();
         } );
     } ); 
-    function addIzininsw(){
-        ajaxView("get", "izininswadd", "p=add", "#content");
+//    function addIzininsw(){
+//        ajaxView("get", "izininswadd", "p=add", "#content");
+//    }
+    function getIzininsw(){
+       modalOpener("#myModal", "Load Data PIB Success", "Success");
     }
-    function edit(e){
-        modalOpener("#myModal", "Update Izininsw", ajaxView("get", "izininswadd", "p=update", ".modal-body"));
-    }
-    function hapus(e){
-        modalOpener("#myModal", "Delete Izininsw", "modalContent");
-    }
+//    function hapus(e){
+//        modalOpener("#myModal", "Delete Izininsw", "modalContent");
+//    }
 </script>
 <!--/subform:izininsw-->
