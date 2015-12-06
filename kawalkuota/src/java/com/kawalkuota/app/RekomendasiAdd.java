@@ -79,12 +79,12 @@ public class RekomendasiAdd extends HttpServlet {
 //                        tanggal.parse(tglawal));
                         
                         Rekomendasi rek = new Rekomendasi();
-                        rek.setKdIjin("1");
                         rek.setNoSurat(noSurat);
                         rek.setNpwp(npwp);
                         rek.setTipe(tipe);
                         rek.setTglawal(null);
                         rek.setTglakhir(null);
+                        rek.setStatus("Y");
 //                        crud.Simpan(rek);
                         out.print("Sukses");
                     } catch (Exception ex) {
