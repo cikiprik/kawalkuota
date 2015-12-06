@@ -7,9 +7,11 @@ package com.kawalkuota.app;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kawalkuota.dao.AppService;
+import com.kawalkuota.dto.KebutuhanJson;
 import com.kawalkuota.dto.ProduksiJson;
 import com.kawalkuota.dto.RekomendasiJson;
 import com.kawalkuota.entity.Ijin;
+import com.kawalkuota.entity.Kebutuhan;
 import com.kawalkuota.entity.Produksi;
 import com.kawalkuota.entity.Pib;
 import com.kawalkuota.entity.Produksi;
@@ -140,28 +142,28 @@ public class Json extends HttpServlet {
                 out.println("{\"data\":" + json + "}");
 
             }
-            if ("produksi".equals(p)) {
-                List<ProduksiJson> jso = new ArrayList<ProduksiJson>();
+            if ("kebutuhan".equals(p)) {
+                List<KebutuhanJson> jso = new ArrayList<KebutuhanJson>();
                 i = 0;
-
-                List<Produksi> td = appService.GetAllData("Produksi");
-                for (Iterator<Produksi> it = td.iterator(); it.hasNext();) {
-                    Produksi produksi = it.next();
-                    ProduksiJson js = new ProduksiJson();
+            
+                List<Kebutuhan> td = appService.GetAllData("Kebutuhan");
+                for (Iterator<Kebutuhan> it = td.iterator(); it.hasNext();) {
+                    Kebutuhan kebutuhan = it.next();
+                    KebutuhanJson js = new KebutuhanJson();
                     i++;
-                    js.setIdProduksi(i);
-                    js.setJmlProduksi(produksi.getJmlProduksi());
-                    js.setKomoditi(produksi.getKomoditi());
-                    js.setTahun(produksi.getTahun());
+                    js.setIdKebutuhan(i);
+                    js.setJmlKebutuhan(kebutuhan.getJmlKebutuhan());
+                    js.setKomoditi(kebutuhan.getKomoditi());
+                    js.setTahun(kebutuhan.getTahun());
                     js.setAksi("<button class='btn btn-warning btn-xs btn-fill' "
-                            + "onclick='edit(" + produksi.getIdProduksi() + ")'>"
+                            + "onclick='edit(" + kebutuhan.getIdKebutuhan() + ")'>"
                             + "<i class='fa fa-pencil-square-o'></i></button> "
-                            + "<button class='btn btn-danger btn-xs btn-fill' onclick='hapus(" + produksi.getIdProduksi() + ")'><i class='fa fa-trash-o'></i></button>");
+                            + "<button class='btn btn-danger btn-xs btn-fill' onclick='hapus(" + kebutuhan.getIdKebutuhan() + ")'><i class='fa fa-trash-o'></i></button>");
                     jso.add(js);
                 }
 
                 Gson gson = new Gson();
-                Type type = new TypeToken<List<ProduksiJson>>() {
+                Type type = new TypeToken<List<KebutuhanJson>>() {
                 }.getType();
                 String json = gson.toJson(jso, type);
                 out.println("{\"data\":" + json + "}");
