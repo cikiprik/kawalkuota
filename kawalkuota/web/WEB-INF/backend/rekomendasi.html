@@ -72,13 +72,14 @@
             { "data": "tglawal", 
                "render": function (data) {
                 var date = new Date(data);
-                return date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay();
+                return date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDay()+1);
               }
             },
-            { "data": "tglakhir",
+            { "data": "tglakhir"
+                ,
                "render": function (data) {
                 var date = new Date(data);
-                return date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay();
+                return date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDay()+1);
               }
             },
             { "data": "status" },
