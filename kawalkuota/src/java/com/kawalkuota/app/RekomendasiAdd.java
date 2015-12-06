@@ -8,6 +8,11 @@ import com.kawalkuota.dao.AppService;
 import com.kawalkuota.entity.Rekomendasi;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -58,24 +63,33 @@ public class RekomendasiAdd extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        SimpleDateFormat tanggal = new SimpleDateFormat("yyyy-MM-dd");
+        
         String p = HTMLString.nullString(request.getParameter("p"));
          if ("save".equals(p)) {
-            String noSurat = HTMLString.nullString(request.getParameter("a")); 
-            String npwp = HTMLString.nullString(request.getParameter("b")); 
-            String tipe = HTMLString.nullString(request.getParameter("c")); 
-            String tglawal = HTMLString.nullString(request.getParameter("d")); 
-            String tglakhir = HTMLString.nullString(request.getParameter("e")); 
-            String kdijin = HTMLString.nullString(request.getParameter("f")); 
-
-            Rekomendasi rek = new Rekomendasi();
-            rek.setKdIjin("1");
-            rek.setNoSurat(noSurat);
-            rek.setNpwp(npwp);
-            rek.setTipe(tipe);
-            rek.setTglawal(null);
-            rek.setTglakhir(null);
-            crud.Simpan(rek);
-            out.print("Sukses");
+                    try {
+                        String noSurat = HTMLString.nullString(request.getParameter("a")); 
+                        String npwp = HTMLString.nullString(request.getParameter("b")); 
+                        String tipe = HTMLString.nullString(request.getParameter("c")); 
+                        String tglawal = HTMLString.nullString(request.getParameter("d")); 
+                        String tglakhir = HTMLString.nullString(request.getParameter("e")); 
+                        String kdijin = HTMLString.nullString(request.getParameter("f")); 
+                        System.out.println(""+tglawal);
+//                        System.out.println(""+
+//                        tanggal.parse(tglawal));
+                        
+                        Rekomendasi rek = new Rekomendasi();
+                        rek.setKdIjin("1");
+                        rek.setNoSurat(noSurat);
+                        rek.setNpwp(npwp);
+                        rek.setTipe(tipe);
+                        rek.setTglawal(null);
+                        rek.setTglakhir(null);
+//                        crud.Simpan(rek);
+                        out.print("Sukses");
+                    } catch (Exception ex) {
+                        Logger.getLogger(RekomendasiAdd.class.getName()).log(Level.SEVERE, null, ex);
+                    }
          }
     }
 

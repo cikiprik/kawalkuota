@@ -33,8 +33,8 @@ public class TestApp extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
 
-//            User user1 = (User) appService.GetBySingle("User","Username","ada");
-//            out.print(user1.getUsername());
+            String x = appService.CekLogin("ada","aja");
+            out.print(x);
 //            
 //            List<User> user = appService.GetBy("User","Username","ada",0,10);
 //            for (Iterator<User> it = user.iterator(); it.hasNext();) {
@@ -42,11 +42,11 @@ public class TestApp extends HttpServlet {
 //                
 //                out.println("ini dia "+us.getUsername());
 //            }
-            List<Rekomendasi> rek = appService.GetAllData("Rekomendasi");
-            for (Rekomendasi rekomendasi : rek) {
-                out.println(" "+rekomendasi.getNoSurat());
-            }
-            
+//            List<Rekomendasi> rek = appService.GetAllData("Rekomendasi");
+//            for (Rekomendasi rekomendasi : rek) {
+//                out.println(" "+rekomendasi.getNoSurat());
+//            }
+//            
 
         } finally {
             out.close();
