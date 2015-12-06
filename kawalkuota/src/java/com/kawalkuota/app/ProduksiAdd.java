@@ -5,6 +5,7 @@
 package com.kawalkuota.app;
 
 import com.kawalkuota.dao.AppService;
+import com.kawalkuota.entity.Produksi;
 //import com.kawalkuota.entity.Produksi;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -79,11 +80,11 @@ public class ProduksiAdd extends HttpServlet {
                 String string = tahun;
                 DateFormat format = new SimpleDateFormat("yyyy");
                 Date date = format.parse(string);
-//                Produksi rek = new Produksi();
-//                rek.setTahun(date);
-//                rek.setKomoditi(komoditi);
-//                rek.setProduksi(produksi);
-//                 crud.Simpan(rek);
+                Produksi rek = new Produksi();
+                rek.setTahun(date);
+                rek.setKomoditi(komoditi);
+                rek.setJmlProduksi(Integer.parseInt(produksi));
+                crud.Simpan(rek);
                 out.print("Sukses");
             } catch (Exception ex) {
                 Logger.getLogger(ProduksiAdd.class.getName()).log(Level.SEVERE, null, ex);

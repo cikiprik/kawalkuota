@@ -57,14 +57,14 @@
     
     var table= jQuery('#tableProduksi').DataTable( 
       {
-//        "ajax": "json?content=produksi",
-//        "columns": [
-//            { "data": "id"},
-//            { "data": "tahun" },
-//            { "data": "komoditi" },
-//            { "data": "produksi" }
-//
-//        ]    
+        "ajax": "json?content=produksi",
+        "columns": [
+            { "data": "idProduksi"},
+            { "data": "tahun" },
+            { "data": "komoditi" },
+            { "data": "jmlProduksi" }
+
+        ]    
        } 
     );
    table.columns().every( function () {
