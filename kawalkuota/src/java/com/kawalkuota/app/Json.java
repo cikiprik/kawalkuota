@@ -7,6 +7,8 @@ package com.kawalkuota.app;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kawalkuota.dao.AppService;
+import com.kawalkuota.dto.KebutuhanJson;
+import com.kawalkuota.entity.Kebutuhan;
 import com.kawalkuota.entity.Rekomendasi;
 import com.kawalkuota.entity.Rekomendasidetil;
 import com.kawalkuota.entity.User;
@@ -52,7 +54,7 @@ public class Json extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-
+        int i;
         try {
 
             String p = HTMLString.nullString(request.getParameter("content"));
@@ -92,6 +94,32 @@ public class Json extends HttpServlet {
                     Type type = new TypeToken<List<Rekomendasi>>() {
                     }.getType();
                     String json = gson.toJson(td, type);
+                    out.println("{\"data\":"+json+"}");
+                }
+                if ("kebutuhan".equals(p)) {
+                    List<KebutuhanJson> jso = new ArrayList<KebutuhanJson>();
+                    i=0;
+                    
+                    List<Kebutuhan> td = appService.GetAllData("Kebutuhan");
+                    for (Kebutuhan kebutuhan : td) {
+                        KebutuhanJson js = new KebutuhanJson();
+//                        js.setIdKebutuhan(kebutuhan.getIdKebutuhan());
+                        i++;
+                        js.setIdKebutuhan(i);
+                        js.setJmlKebutuhan(kebutuhan.getJmlKebutuhan());
+                        js.setKomoditi(kebutuhan.getKomoditi());
+                        js.setTahun(kebutuhan.getTahun());
+                        js.setAksi("<button class='btn btn-warning btn-xs btn-fill' "
+                                + "onclick='edit("+kebutuhan.getIdKebutuhan()+")'>"
+                                + "<i class='fa fa-pencil-square-o'></i></button> "
+                                + "<button class='btn btn-danger btn-xs btn-fill' onclick='hapus("+kebutuhan.getIdKebutuhan()+")'><i class='fa fa-trash-o'></i></button>");
+                        jso.add(js);
+                    }
+                    
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<List<KebutuhanJson>>() {
+                    }.getType();
+                    String json = gson.toJson(jso, type);
                     out.println("{\"data\":"+json+"}");
                     
                 }

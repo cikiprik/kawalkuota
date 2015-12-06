@@ -1,0 +1,86 @@
+<!--subform:produksi-->
+<style type="text/css">
+    #tableProduksi_filter{
+        display: none;
+    }
+    #tableProduksi_length{
+        display: none;
+    }
+    #headerTable{
+        background-color: #385AD8;
+       
+    }
+    #headerTable th{
+        color: #FFF;
+    }
+</style>
+    <div class="card">
+        <div class="header"><h4>Produksi Nasional</h4></div>
+        <div class="content">
+            <div class="row" style="padding-left:20px">
+                <div class="col col-4">
+                    <button class="btn btn-info btn-fill btn-sm" onclick="addProduksi()"> <span class="fa fa-plus-square-o"></span> Add New </button> </li>
+                </div>
+             </div>
+
+        <table class="table table-core table-hover" id="tableProduksi" style="padding: 10px">
+            <thead>
+                <tr id="headerTable">
+                    <th>No</th>
+                    <th>Tahun</th>
+                    <th>Komoditi</th>
+                    <th>Produksi</th>
+                    <th>Aksi</th>
+                </tr>
+
+            </thead>
+            <tfoot>
+                <tr>
+                     <th>No</th>
+                    <th>Tahun</th>
+                    <th>Komoditi</th>
+                    <th>Produksi</th>
+                    <th>Aksi</th>
+                </tr>
+
+            </tfoot>
+        </table>
+        </div>
+    </div>
+
+
+<script>
+    jQuery('#tableProduksi tfoot th').each( function () {
+        var title = jQuery(this).text();
+        jQuery(this).html('<input type="text" placeholder="Cari '+title+'"  class="input-sm form-control"/> ');
+    } );
+    
+    var table= jQuery('#tableProduksi').DataTable( 
+      {
+        "ajax": "json?content=produksi",
+        "columns": [
+            { "data": "id"},
+            { "data": "tahun" },
+            { "data": "komoditi" },
+            { "data": "produksi" }
+
+        ]    
+       } 
+    );
+   table.columns().every( function () {
+        var column = this;
+        jQuery('input', this.footer()).on('keyup click change', function () {
+            column.search(this.value).draw();
+        } );
+    } ); 
+function addProduksi(){
+    ajaxView("get", "produksiadd", "p=add", "#content");
+}
+function edit(e){
+    modalOpener("#myModal", "Update Produksi", ajaxView("get", "produksiadd", "p=update", ".modal-body"));
+}
+function hapus(e){
+    modalOpener("#myModal", "Delete Produksi", "modalContent");
+}
+</script>
+<!--/subform:produksi-->
