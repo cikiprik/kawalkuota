@@ -174,11 +174,11 @@
                 </div>
             </div>
             <!--<div class="row">-->
-                <!--<div class="col-lg-10 col-lg-offset-1 text-center">-->
+            <!--<div class="col-lg-10 col-lg-offset-1 text-center">-->
 
 
-                    <iframe scrolling="no" frameborder="0" src="chart.html" style="height: 90% !important; width: 100% !important;"></iframe> 
-                <!--</div>-->
+            <iframe scrolling="no" frameborder="0" src="chart.html" style="height: 90% !important; width: 100% !important;"></iframe> 
+            <!--</div>-->
             <!--</div>-->
             <!-- /.row -->
 
@@ -197,6 +197,11 @@
                 </div>
             </div>
         </aside>
+        <!--repeat:listLokasi-->
+        var {txtIdLokasi} = { {txtLat} - {txtlng} - {txtNamaLokasi} - {txtContent} }<br>
+        <!--/repeat:listLokasi-->
+
+
 
         <!-- Map -->
         <section id="contact" class="map">
@@ -205,17 +210,25 @@
 
                 // This example displays a marker at the center of Australia.
                 // When the user clicks the marker, an info window opens.
-
+                var tengah = {lat:  -2.414613, lng: 122.510915};
                 function initMap() {
-                    var uluru = {lat: -6.103416, lng: 106.884022};
-                    var perak = {lat:  -7.196622, lng: 112.733686};
-                    var makassar = {lat:   -5.114365, lng: 119.411779};
-                    var tengah = {lat:  -2.414613, lng: 122.510915};
                     var map = new google.maps.Map(document.getElementById('mapnya'), {
                         zoom: 5,
                         center: tengah
                     });
+                    
+                    
+//                     <!--repeat:listLokasi-->
+//                        v{txtIdLokasi} = { {txtLat} - {txtlng} - {txtNamaLokasi} - {txtContent} }<br>
+//                      <!--/repeat:listLokasi-->
+//                    
+//                    
+//                    
+                    
 
+                    var uluru = {lat: -6.103416, lng: 106.884022};
+                    var perak = {lat:  -7.196622, lng: 112.733686};
+                    var makassar = {lat:   -5.114365, lng: 119.411779};
                     var contentString = '<div id="content">'+
                         '<div id="siteNotice">'+
                         '</div>'+
@@ -224,11 +237,6 @@
                         '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large</p>'+
                         '</div>'+
                         '</div>';
-
-                    var infowindow = new google.maps.InfoWindow({
-                        content: contentString
-                    });
-  
                     var contentString2 = '<div id="content">'+
                         '<div id="siteNotice">'+
                         '</div>'+
@@ -237,10 +245,6 @@
                         '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large</p>'+
                         '</div>'+
                         '</div>';
-
-                    var infowindow2 = new google.maps.InfoWindow({
-                        content: contentString2
-                    });
                     var contentString3 = '<div id="content">'+
                         '<div id="siteNotice">'+
                         '</div>'+
@@ -250,6 +254,13 @@
                         '</div>'+
                         '</div>';
 
+                    var infowindow = new google.maps.InfoWindow({
+                        content: contentString
+                    });
+
+                    var infowindow2 = new google.maps.InfoWindow({
+                        content: contentString2
+                    });
                     var infowindow3 = new google.maps.InfoWindow({
                         content: contentString3
                     });

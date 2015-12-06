@@ -1,0 +1,93 @@
+<!--subform:rekomendasi-->
+<style type="text/css">
+    #tableRekomendasi_filter{
+        display: none;
+    }
+    #tableRekomendasi_length{
+        display: none;
+    }
+    #headerTable{
+        background-color: #385AD8;
+       
+    }
+    #headerTable th{
+        color: #FFF;
+    }
+</style>
+    <div class="card">
+        <div class="header"><h4>Kebutuhan</h4></div>
+        <div class="content">
+            <div class="row" style="padding-left:20px">
+                <div class="col col-4">
+                    <button class="btn btn-info btn-fill btn-sm" onclick="addRekomendasi()"> <span class="fa fa-plus-square-o"></span> Add New </button> </li>
+                </div>
+             </div>
+
+        <table class="table table-core table-hover" id="tableRekomendasi" style="padding: 10px">
+            <thead>
+                <tr id="headerTable">
+                    <th>No</th>
+                    <th>NOMOR SURAT</th>
+                    <th>NPWP</th>
+                    <th>TIPE</th>
+                    <th>TANGGAL AWAL</th>
+                    <th>TANGGAL AKHIR</th>
+                    <th>Aksi</th>
+                </tr>
+
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>No</th>
+                    <th>No Surat</th>
+                    <th>NPWP</th>
+                    <th>Tipe</th>
+                    <th>Tgl Awal</th>
+                    <th>Tgl Akhir</th>
+                    <th>Aksi</th>
+                </tr>
+
+            </tfoot>
+        </table>
+        </div>
+    </div>
+
+
+<script>
+    jQuery('#tableRekomendasi tfoot th').each( function () {
+        var title = jQuery(this).text();
+        jQuery(this).html('<input type="text" placeholder="Cari '+title+'"  class="input-sm form-control"/> ');
+    } );
+    
+    var table= jQuery('#tableRekomendasi').DataTable( 
+      {
+        "ajax": "json?content=rekomendasi",
+        "columns": [
+            { "data": "id"},
+            { "data": "noSurat" },
+            { "data": "npwp" },
+            { "data": "tipe" },
+            { "data": "tglawal" },
+            { "data": "tglakhir" },
+            { "data": "kdIjin" }
+
+        ]    
+       } 
+    );
+   table.columns().every( function () {
+        var column = this;
+        jQuery('input', this.footer()).on('keyup click change', function () {
+            column.search(this.value).draw();
+        } );
+    } ); 
+function addRekomendasi(){
+    ajaxView("get", "rekomendasiadd", "p=add", "#content");
+}
+function edit(e){
+    modalOpener("#myModal", "Update Rekomendasi", ajaxView("get", "rekomendasiadd", "p=update", ".modal-body"));
+}
+function hapus(e){
+    modalOpener("#myModal", "Delete Rekomendasi", "modalContent");
+}
+</script>
+<!--/subform:rekomendasi-->
