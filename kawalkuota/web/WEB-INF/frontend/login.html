@@ -1,0 +1,157 @@
+<!--subform:login-->
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{txtTitle}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <style type="text/css">
+            .account-box
+            {
+                border: 2px solid rgba(153, 153, 153, 0.75);
+                border-radius: 2px;
+                -moz-border-radius: 2px;
+                -webkit-border-radius: 2px;
+                -khtml-border-radius: 2px;
+                -o-border-radius: 2px;
+                z-index: 3;
+                font-size: 13px !important;
+                font-family: "Helvetica Neue" ,Helvetica,Arial,sans-serif;
+                background-color: #ffffff;
+                padding: 20px;
+            }
+
+            .logo
+            {
+                width: 138px;
+                height: 30px;
+                text-align: center;
+                margin: 10px 0px 27px 40px;
+                background-position: 0px -4px;
+                position: relative;
+            }
+
+            .forgotLnk
+            {
+                margin-top: 10px;
+                display: block;
+            }
+
+            .purple-bg
+            {
+                background-color: #6E329D;
+                color: #fff;
+            }
+            .or-box
+            {
+                position: relative;
+                border-top: 1px solid #dfdfdf;
+                padding-top: 20px;
+                margin-top:20px;
+            }
+            .or
+            {
+                color: #666666;
+                background-color: #ffffff;
+                position: absolute;
+                text-align: center;
+                top: -8px;
+                width: 40px;
+                left: 90px;
+            }
+            .account-box .btn:hover
+            {
+                color: #fff;
+            }
+            .btn-facebook
+            {
+                background-color: #3F639E;
+                color: #fff;
+                font-weight:bold;
+            }
+            .btn-google
+            {
+                background-color: #454545;
+                color: #fff;
+                font-weight:bold;
+            }
+
+        </style>
+        <script src="js/jquery.min.1.11.3.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            
+            <div align="resulte"></div>
+
+            <div class="row">
+                <div class="col-md-3 col-md-offset-4">
+                    <div align="center"><h2> LOGIN KAWAL KUOTA </h2></div>
+                    <div class="account-box">
+                        <div class="logo ">
+                            <img src="img/logo.jpg" alt=""/>
+                        </div>
+                        <div class="form-signin" >
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="username" required autofocus id="username"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password" required id="password" />
+                            </div>
+                            <button class="btn btn-lg btn-block purple-bg" id="login">
+                                <i class="fa fa-sign-in"></i> Sign in</button>
+                        </form>
+                        <a class="forgotLnk" href="lupapassword">I can't access my account</a>
+
+                        <div class="or-box row-block">
+                            <div class="row">
+                                <div class="col-md-12 row-block">
+                                    <a href="registrasi" class="btn btn-primary btn-block">Create New Account</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+           $("#login").click(function(){
+            var par1 = btoa($('#username').val());
+            var par2 = btoa($('#password').val());
+            alert(par1+par2);
+                $.ajax({
+                type: "post",
+                url: "login.html",
+                dataType: 'text',
+                data: {
+                    a:par1,
+                    b:par2
+                },
+        
+                success: function(data) {
+                    if(data=='ok') {
+                        $("#resulte").html(data);
+                        window.location.replace("dashboard.html");
+                    }else{
+                        $("#resulte").html("<div class=\"alert alert-info fade in\">"+
+                        "<a class=\"close\" title=\"close\" aria-label=\"close\" data-dismiss=\"alert\" href=\"#\">x</a><strong>Info!</strong>"+
+                        "Login Gagal</div>");
+                    }
+                },
+                error: function() {
+                    $("#resulte").html("<div class=\"alert alert-info fade in\">"+
+                        "<a class=\"close\" title=\"close\" aria-label=\"close\" data-dismiss=\"alert\" href=\"#\">x</a><strong>Info!</strong>"+
+                        "Login Gagal</div>");
+                }
+            });
+           });
+               
+        </script>
+    </body>
+</html>
+
+<!--/subform:login-->

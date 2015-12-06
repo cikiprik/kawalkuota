@@ -95,16 +95,7 @@
 
 
 <script>
-    jQuery('#tglAwal').datepicker({
-        format: 'dd-mm-yyyy'
-    }).on('changeDate', function() {
-        checkout.hide();
-    });
-    jQuery('#tglAkhir').datepicker({
-        format: 'dd-mm-yyyy'
-    }).on('changeDate', function() {
-        checkout.hide();
-    });
+
     jQuery('#tableRekomendasiDetil tfoot th').each( function () {
         var title = jQuery(this).text();
         jQuery(this).html('<input type="text" placeholder="Cari '+title+'"  class="input-sm form-control"/> ');
