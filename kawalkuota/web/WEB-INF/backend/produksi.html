@@ -19,7 +19,7 @@
         <div class="content">
             <div class="row" style="padding-left:20px">
                 <div class="col col-4">
-                    <button class="btn btn-info btn-fill btn-sm" onclick="addProduksi()"> <span class="fa fa-plus-square-o"></span> Add New </button> </li>
+                    <button class="btn btn-info btn-fill btn-sm" onclick="addProduksi()"> <span class="fa fa-plus-square-o"></span> Tambah Baru </button> </li>
                 </div>
              </div>
 
@@ -57,14 +57,14 @@
     
     var table= jQuery('#tableProduksi').DataTable( 
       {
-        "ajax": "json?content=produksi",
-        "columns": [
-            { "data": "id"},
-            { "data": "tahun" },
-            { "data": "komoditi" },
-            { "data": "produksi" }
-
-        ]    
+//        "ajax": "json?content=produksi",
+//        "columns": [
+//            { "data": "id"},
+//            { "data": "tahun" },
+//            { "data": "komoditi" },
+//            { "data": "produksi" }
+//
+//        ]    
        } 
     );
    table.columns().every( function () {

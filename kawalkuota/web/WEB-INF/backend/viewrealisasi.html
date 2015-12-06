@@ -1,0 +1,86 @@
+<!--subform:viewrealisasi-->
+<style type="text/css">
+    #tableViewrealisasi_filter{
+        display: none;
+    }
+    #tableViewrealisasi_length{
+        display: none;
+    }
+    #headerTable{
+        background-color: #385AD8;
+
+    }
+    #headerTable th{
+        color: #FFF;
+    }
+</style>
+<div class="card">
+    <div class="header"><h4>View Realisasi</h4></div>
+    <div class="content">
+        <div class="row" style="padding-left:20px">
+            <div class="col col-md-2">
+                <label>Tahun</label>
+                <input type="text" class="form-control" placeholder="No Izin" id="noIzin"/>
+                <label>Komoditas</label>
+                <input type="text" class="form-control" placeholder="Tgl Izin" id="tglIzin"/><br>
+                <button class="btn btn-info btn-fill btn-sm" onclick="getViewrealisasi()"> <span class="fa fa-plus-square-o"></span> Cari </button> 
+            </div>
+        </div>
+
+        <table class="table table-core table-hover" id="tableViewrealisasi" style="padding: 10px">
+            <thead>
+                <tr id="headerTable">
+                    <th>komoditas</th>
+                    <th>Jumlah Izin</th>
+                    <th>Jumlah Barang Impor</th>
+                </tr>
+
+            </thead>
+            <tfoot>
+                <tr>
+                     <th>komoditas</th>
+                    <th>Jumlah Izin</th>
+                    <th>Jumlah Barang Impor</th>
+                </tr>
+
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    jQuery('#tableViewrealisasi tfoot th').each( function () {
+        var title = jQuery(this).text();
+        jQuery(this).html('<input type="text" placeholder="Cari '+title+'"  class="input-sm form-control"/> ');
+    } );
+    
+    var table= jQuery('#tableViewrealisasi').DataTable( 
+    {
+//        "ajax": "json?content=viewrealisasi",
+//        "columns": [
+//            { "data": "id"},
+//            { "data": "tahun" },
+//            { "data": "komoditi" },
+//            { "data": "viewrealisasi" }
+//
+//        ]    
+    } 
+);
+    table.columns().every( function () {
+        var column = this;
+        jQuery('input', this.footer()).on('keyup click change', function () {
+            column.search(this.value).draw();
+        } );
+    } ); 
+    function addViewrealisasi(){
+        ajaxView("get", "viewrealisasiadd", "p=add", "#content");
+    }
+    function edit(e){
+        modalOpener("#myModal", "Update Viewrealisasi", ajaxView("get", "viewrealisasiadd", "p=update", ".modal-body"));
+    }
+    function hapus(e){
+        modalOpener("#myModal", "Delete Viewrealisasi", "modalContent");
+    }
+</script>
+<!--/subform:viewrealisasi-->
