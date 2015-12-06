@@ -37,6 +37,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Rekomendasi.findByTglakhir", query = "SELECT r FROM Rekomendasi r WHERE r.tglakhir = :tglakhir"),
     @NamedQuery(name = "Rekomendasi.findByKdIjin", query = "SELECT r FROM Rekomendasi r WHERE r.kdIjin = :kdIjin")})
 public class Rekomendasi implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_rekomendasi")
+    private Integer idRekomendasi;
+    @Size(max = 100)
+    @Column(name = "status")
+    private String status;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -148,6 +156,4 @@ public class Rekomendasi implements Serializable {
         return "com.kawalkuota.entity.Rekomendasi[ id=" + id + " ]";
     }
 
-   
-    
 }
