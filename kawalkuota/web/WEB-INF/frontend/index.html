@@ -61,9 +61,6 @@
                             <a class="page-scroll" href="#contact">Pemetaan Kuota</a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="#about">Tentang Kami</a>
-                        </li>
-                        <li>
                             <a class="page-scroll" href="login.html">Login</a>
                         </li>
                     </ul>
@@ -276,58 +273,74 @@
         </aside>
 
         <!-- Portfolio -->
-        <section id="portfolio" class="portfolio" style="margin-bottom: -100px">
+        <section id="portfolio" class="portfolio">
             <div class="container">
                 <div class="row" style="height: 20%;">
                     <div class="col-lg-10 col-lg-offset-1 text-center">
                         <h2>Grafik Monitoring</h2>
+                        <hr class="small">
                         <!-- /.row (nested) -->
                     </div>
                     <!-- /.col-lg-10 -->
                 </div>
             </div>
-            
-            <iframe scrolling="no" frameborder="0" src="chart.html" style="height: 90% !important; width: 100% !important;"></iframe> 
-            
+
+            <iframe id="iframeChart" scrolling="no" frameborder="0" src="chart.html" style="height: 90% !important; width: 100% !important;"></iframe> 
+
         </section>
 
-        <!-- Call to Action -->
-        <aside class="call-to-action bg-primary">
-            <div class="container">
-                <div class="row text-center">
-                    <div class="col-lg-10 col-lg-offset-1">
-                        <div class="col-md-4 col-sm-4">
-                            <div class="service-item">
-                                <span class="fa-stack fa-5x">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-thumbs-up fa-stack-1x text-primary"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
-                            <div class="service-item">
-                                <span class="fa-stack fa-5x">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-file fa-stack-1x text-primary"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
-                            <div class="service-item">
-                                <span class="fa-stack fa-5x">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-truck fa-stack-1x text-primary"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </aside>
+        <div style="height: 20px; background-color: #337ab7">
+        </div>
+
 
         <!-- Map -->
         <section id="contact" class="map">
-            <div id="mapnya"></div>
+            <div class="row" style="height: 100%">
+                <div class="col-md-3 col-sm-2">
+                    <h1 class="text-center">Realisasi</h1>
+                    <div id="MapPriok" style="display: none; padding-left: 20px">
+                        <h3>Tanjung Priok</h3>
+                        <h5>Hewan Hidup (12000 KGM)</h5>
+                        <h5>Gula (8000 TNE)</h5>
+                        <h5>Garam (6000 TNE)</h5>
+                        <h5>Beras (10000 TNE)</h5>
+                        <h5>Hortikultura (900000 KGM)</h5>
+                    </div>
+                    <div id="MapTbk" style="display: none; padding-left: 20px">
+                        <h3>Batam</h3>
+                        <h5>Hewan Hidup (14000 KGM)</h5>
+                        <h5>Gula (3000 TNE)</h5>
+                        <h5>Garam (2000 TNE)</h5>
+                        <h5>Beras (70000 TNE)</h5>
+                        <h5>Hortikultura (600000 KGM)</h5>
+                    </div>
+                    <div id="MapPerak" style="display: none; padding-left: 20px">
+                        <h3>Tanjung Perak</h3>
+                        <h5>Hewan Hidup (13000 KGM)</h5>
+                        <h5>Gula (2000 TNE)</h5>
+                        <h5>Garam (3000 TNE)</h5>
+                        <h5>Beras (11000 TNE)</h5>
+                        <h5>Hortikultura (620000 KGM)</h5>
+                    </div>
+                    <div id="MapMks" style="display: none; padding-left: 20px">
+                        <h3>Makassar</h3>
+                        <h5>Hewan Hidup (5000 KGM)</h5>
+                        <h5>Gula (1000 TNE)</h5>
+                        <h5>Garam (1400 TNE)</h5>
+                        <h5>Beras (9000 TNE)</h5>
+                        <h5>Hortikultura (80000 KGM)</h5>
+                    </div>
+                    <div id="MapSorong" style="display: none; padding-left: 20px">
+                        <h3>Sorong</h3>
+                        <h5>Hewan Hidup (4000 KGM)</h5>
+                        <h5>Gula (500 TNE)</h5>
+                        <h5>Garam (300 TNE)</h5>
+                        <h5>Beras (8000 TNE)</h5>
+                        <h5>Hortikultura (340000 KGM)</h5>
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-10" id="mapnya"></div>
+            </div>
             <script>
 
                 // This example displays a marker at the center of Australia.
@@ -336,75 +349,81 @@
                 function initMap() {
                     var map = new google.maps.Map(document.getElementById('mapnya'), {
                         zoom: 5,
+                        scrollwheel: false,
                         center: tengah
                     });         
                     
-
                     var uluru = {lat: -6.103416, lng: 106.884022};
                     var perak = {lat:  -7.196622, lng: 112.733686};
                     var makassar = {lat:   -5.114365, lng: 119.411779};
-                    var contentString = '<div id="content">'+
-                        '<div id="siteNotice">'+
-                        '</div>'+
-                        '<h2 id="firstHeading" class="firstHeading">Tanjung Priok</h2>'+
-                        '<div id="bodyContent">'+
-                        '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large</p>'+
-                        '</div>'+
-                        '</div>';
-                    var contentString2 = '<div id="content">'+
-                        '<div id="siteNotice">'+
-                        '</div>'+
-                        '<h2 id="firstHeading" class="firstHeading">Tanjung Perak</h2>'+
-                        '<div id="bodyContent">'+
-                        '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large</p>'+
-                        '</div>'+
-                        '</div>';
-                    var contentString3 = '<div id="content">'+
-                        '<div id="siteNotice">'+
-                        '</div>'+
-                        '<h2 id="firstHeading" class="firstHeading">Pelabuhan Makassar</h2>'+
-                        '<div id="bodyContent">'+
-                        '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large</p>'+
-                        '</div>'+
-                        '</div>';
-
-                    var infowindow = new google.maps.InfoWindow({
-                        content: contentString
-                    });
-
-                    var infowindow2 = new google.maps.InfoWindow({
-                        content: contentString2
-                    });
-                    var infowindow3 = new google.maps.InfoWindow({
-                        content: contentString3
-                    });
+                    var sorong = {lat: -0.898581, lng: 131.323061};
+                    var tbk = {lat: 0.991810, lng: 103.431526};
 
                     var marker = new google.maps.Marker({
                         position: uluru,
                         map: map,
-                        title: 'Tanjung Priok'
+                        title: 'Tanjung Priok',
+                        icon: 'images/marker.png'
                     });
-  
                     var marker2 = new google.maps.Marker({
                         position: perak,
                         map: map,
-                        title: 'Tanjung Perak'
+                        title: 'Tanjung Perak',
+                        icon: 'images/marker.png'
                     });
                     var marker3 = new google.maps.Marker({
                         position: makassar,
                         map: map,
-                        title: 'Makassar'
+                        title: 'Makassar',
+                        icon: 'images/marker.png'
+                    });
+                    var marker4 = new google.maps.Marker({
+                        position: sorong,
+                        map: map,
+                        title: 'Sorong',
+                        icon: 'images/marker.png'
+                    });
+                    var marker5 = new google.maps.Marker({
+                        position: tbk,
+                        map: map,
+                        title: 'Batam',
+                        icon: 'images/marker.png'
                     });
   
                     marker.addListener('click', function() {
-                        infowindow.open(map, marker);
+                        document.getElementById('MapPriok').style.display = 'block';
+                        document.getElementById('MapPerak').style.display = 'none';
+                        document.getElementById('MapMks').style.display = 'none';
+                        document.getElementById('MapSorong').style.display = 'none';
+                        document.getElementById('MapTbk').style.display = 'none';
                     });
-  
                     marker2.addListener('click', function() {
-                        infowindow2.open(map, marker2);
+                        document.getElementById('MapPerak').style.display = 'block';
+                        document.getElementById('MapPriok').style.display = 'none';
+                        document.getElementById('MapMks').style.display = 'none';
+                        document.getElementById('MapSorong').style.display = 'none';
+                        document.getElementById('MapTbk').style.display = 'none';
                     });
                     marker3.addListener('click', function() {
-                        infowindow3.open(map, marker3);
+                        document.getElementById('MapMks').style.display = 'block';
+                        document.getElementById('MapPriok').style.display = 'none';
+                        document.getElementById('MapPerak').style.display = 'none';
+                        document.getElementById('MapSorong').style.display = 'none';
+                        document.getElementById('MapTbk').style.display = 'none';
+                    });
+                    marker4.addListener('click', function() {
+                        document.getElementById('MapSorong').style.display = 'block';
+                        document.getElementById('MapPriok').style.display = 'none';
+                        document.getElementById('MapPerak').style.display = 'none';
+                        document.getElementById('MapMks').style.display = 'none';
+                        document.getElementById('MapTbk').style.display = 'none';
+                    });
+                    marker5.addListener('click', function() {
+                        document.getElementById('MapTbk').style.display = 'block';
+                        document.getElementById('MapPriok').style.display = 'none';
+                        document.getElementById('MapPerak').style.display = 'none';
+                        document.getElementById('MapMks').style.display = 'none';
+                        document.getElementById('MapSorong').style.display = 'none';
                     });
                 }
 
@@ -412,13 +431,78 @@
             <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6Phj2danjmhFtA4HvCe9iSGpp8pqmpbU&signed_in=true&callback=initMap"></script>
 
-            <!--<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=-6.103475, 106.884257&amp;sspn=-6.103475, 106.884257&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=10&amp;iwloc=A&amp;output=embed"></iframe>-->
-            <!--<br />-->
-            <!--            <small>
-                            <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-                        </small>-->
-            <!--</iframe>-->
         </section>
+
+        <!-- Call to Action -->
+        <aside class="call-to-action bg-primary">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <div class="col-md-3 col-sm-3">
+                            <div class="service-item">
+                                <span class="fa-stack fa-5x">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-adjust fa-stack-1x text-primary"></i>
+                                </span>
+                            </div>
+                            <h1>Forecast</h1>
+                            <p>
+                                Kementerian/Lembaga wajib membuat forecasting terkait
+                                kebutuhan serta produksi dalam negeri selama tahun kedepan. Forecasting
+                                ini yang bisa menjadi acuan total kuota yang dapat 
+                                diberikan kepada importir dalam tahun berjalan.
+                            </p>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <div class="service-item">
+                                <span class="fa-stack fa-5x">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-thumbs-up fa-stack-1x text-primary"></i>
+                                </span>
+                            </div>
+                            <h1>Rekomendasi</h1>
+                            <p>
+                                Kementerian/Lembaga yang memiliki kewajiban untuk memberikan
+                                rekomendasi terhadap suatu ijin kuota dapat
+                                melakukan input dalam sistem kawal kuota sebagai bahan
+                                acuan Kementerian Perdagangan dalam memberikan ijin.
+                            </p>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <div class="service-item">
+                                <span class="fa-stack fa-5x">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-file fa-stack-1x text-primary"></i>
+                                </span>
+                            </div>
+                            <h1>Perijinan</h1>
+                            <p>
+                                Kementerian Perdagangan memberikan ijin kuota terhadap
+                                importir. Beberapa ijin didapatkan dari rekomendasi
+                                Kementerian/Lembaga. Dalam kawal kuota, ijin kuota bisa
+                                didapatkan melalui web service yang sudah disediakan oleh portal INSW.
+                            </p>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <div class="service-item">
+                                <span class="fa-stack fa-5x">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-truck fa-stack-1x text-primary"></i>
+                                </span>
+                            </div>
+                            <h1>Realisasi</h1>
+                            <p>
+                                Direktorat Jenderal Bea dan Cukai memberikan data
+                                impor terkait barang kena kuota untuk menghitung
+                                realisasi kuota. Data impor bisa didapatkan melalui
+                                web service yang sudah disediakan oleh CEISA Impor.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
 
         <!-- Footer -->
         <footer>
@@ -458,6 +542,7 @@
 
         <!-- Custom Theme JavaScript -->
         <script>
+            
             // Closes the sidebar menu
             $("#menu-close").click(function(e) {
                 e.preventDefault();
